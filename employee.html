@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة الموظفين والتحليل الذكي | إشارة يقين</title>
+  
+  <!-- Meta description for SEO -->
+  <meta name="description" content="لوحة تحكم مهندسي ومشغلي الاتصالات - منظومة إشارة يقين للتحليل الاستباقي وتوجيه الفرق الميدانية عبر الذكاء الاصطناعي المتعدد.">
+
+  <!-- Google Fonts: Cairo & Tajawal -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            cairo: ['Cairo', 'sans-serif'],
+            tajawal: ['Tajawal', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              cyan: '#00f2fe',
+              neon: '#00e5ff',
+              blue: '#0284c7',
+              dark: '#030b17',
+              accent: '#38bdf8'
+            }
+          },
+          animation: {
+            'pulse-glow': 'pulseGlow 2.5s infinite ease-in-out',
+          },
+          keyframes: {
+            pulseGlow: {
+              '0%, 100%': { boxShadow: '0 0 15px rgba(239, 68, 68, 0.4), inset 0 0 10px rgba(239, 68, 68, 0.2)' },
+              '50%': { boxShadow: '0 0 30px rgba(239, 68, 68, 0.8), inset 0 0 18px rgba(239, 68, 68, 0.4)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Tajawal', 'Cairo', sans-serif;
+      background-color: #030b17;
+      color: #ffffff;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Cyberpunk HUD Grid Overlay */
+    .hud-grid-pattern {
+      background-image: 
+        radial-gradient(circle at 50% 10%, rgba(239, 68, 68, 0.08) 0%, transparent 60%),
+        radial-gradient(circle at 90% 80%, rgba(0, 242, 254, 0.06) 0%, transparent 50%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+    }
+
+    /* High-contrast text shadows */
+    .hud-glow-red {
+      text-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
+    }
+    .hud-glow-cyan {
+      text-shadow: 0 0 20px rgba(0, 242, 254, 0.6);
+    }
+
+    /* Progress bar transitions */
+    .hud-progress {
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-slate-950 text-white flex flex-col justify-between selection:bg-cyan-500 selection:text-black relative">
+
+  <!-- ========================================================= -->
+  <!-- 1. STATIC CLEAN HIGH-TECH DARK BACKGROUND (NO VIDEO)       -->
+  <!-- ========================================================= -->
+  <!-- Static dark tech gradient -->
+  <div class="fixed inset-0 bg-gradient-to-b from-slate-950 via-[#061224] to-slate-950 pointer-events-none -z-20"></div>
+  <!-- Subtle static grid pattern -->
+  <div class="fixed inset-0 bg-[radial-gradient(rgba(0,242,254,0.06)_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none -z-10"></div>
+
+  <!-- ========================================================= -->
+  <!-- 2. TOP HEADER & BRAND IDENTITY (شريط الهوية النظيف الخالي)  -->
+  <!-- ========================================================= -->
+  <header class="w-full bg-slate-950/80 backdrop-blur-xl border-b border-cyan-500/20 sticky top-0 z-30 shadow-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
+      
+      <!-- Brand & Operations Title (Clean, NO clutter, NO extra buttons) -->
+      <a href="index.html" class="flex items-center gap-3.5 group">
+        <img 
+          src="Minimalist_tech_logo_design_Yaqeen_20260930083231.jpg_2K_20260930083859.jpg" 
+          alt="شعار إشارة يقين" 
+          class="w-11 h-11 rounded-xl object-cover border border-cyan-500/40 shadow-[0_0_12px_rgba(6,182,212,0.4)] group-hover:scale-105 group-hover:border-cyan-400 transition-all">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-lg sm:text-xl font-black text-white tracking-wide font-cairo drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] group-hover:text-cyan-300 transition-colors">
+              إشارة يقين
+            </span>
+            <span class="text-[10px] bg-cyan-950/90 text-cyan-300 px-2 py-0.5 rounded-full font-bold border border-cyan-500/40 font-mono">
+              OPS COMMAND
+            </span>
+          </div>
+          <span class="block text-[11px] font-semibold text-cyan-400 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)] tracking-wider font-mono">
+            لوحة الموظفين والتحليل الذكي
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </header>
+
+  <!-- ========================================================= -->
+  <!-- 3. MAIN CONTENT AREA: AI-DRIVEN PRIORITY CARDS GRID        -->
+  <!-- ========================================================= -->
+  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 py-8 w-full">
+    
+    <!-- Main Title Section -->
+    <div class="mb-8">
+      <h2 class="text-2xl sm:text-3xl font-black text-white font-cairo tracking-tight hud-glow-cyan">
+        المناطق والقرى الخاضعة للمراقبة والاستجابة الفورية
+      </h2>
+      <p class="text-slate-400 text-xs sm:text-sm mt-1.5 leading-relaxed">
+        يتم احتساب مؤشر الأولوية آلياً عبر محرك التحليل المتعدد (AI Multi-Agent Scoring Engine) وفق البلاغات، الأجهزة الصامتة، ونطاقات التغطية.
+      </p>
+    </div>
+
+    <!-- Cards Grid Container -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6" id="operationsGrid">
+
+      <!-- ========================================================= -->
+      <!-- CARD 1: قرية الوهط / برج تواصل رقم #402                     -->
+      <!-- ========================================================= -->
+      <article id="card-alwahat" class="group relative bg-slate-900/90 backdrop-blur-2xl border border-red-500/60 shadow-[0_0_30px_rgba(239,68,68,0.25)] hover:shadow-[0_0_40px_rgba(239,68,68,0.4)] rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 overflow-hidden">
+        
+        <!-- Glowing Top Cyber Accent Line (Red) -->
+        <div class="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-red-600 via-rose-500 to-red-400 shadow-[0_0_12px_rgba(239,68,68,0.8)]"></div>
+
+        <!-- Corner Tech Decorations -->
+        <div class="absolute top-2 left-2 w-2.5 h-2.5 border-t border-l border-red-500/70 pointer-events-none"></div>
+        <div class="absolute top-2 right-2 w-2.5 h-2.5 border-t border-r border-red-500/70 pointer-events-none"></div>
+
+        <div>
+          <!-- AI Engine Badge -->
+          <div class="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-800">
+            <span class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-bold bg-red-950/90 text-red-300 border border-red-500/60 font-mono shadow-[0_0_10px_rgba(239,68,68,0.3)]">
+              <span class="w-1.5 h-1.5 rounded-full bg-red-400 animate-ping"></span>
+              تحليل وكيل الذكاء الاصطناعي - AI Priority & Risk Engine
+            </span>
+            <span class="text-[10px] font-mono text-slate-500">ZONE-ID: #WH-402</span>
+          </div>
+
+          <!-- Zone & Target Tower Name -->
+          <div class="mb-5">
+            <div class="text-xs font-bold text-red-400 font-mono uppercase tracking-wider mb-1">نطاق التغطية المستهدف</div>
+            <h3 class="text-xl sm:text-2xl font-black text-white font-cairo">
+              قرية الوهط / برج تواصل رقم #402
+            </h3>
+          </div>
+
+          <!-- AI Priority Score (94% Highlighted with Progress Bar) -->
+          <div class="bg-slate-950/80 border border-red-500/40 rounded-xl p-4 mb-5 shadow-inner">
+            <div class="flex items-baseline justify-between mb-2">
+              <span class="text-xs font-bold text-slate-300 font-cairo">مؤشر الأولوية الإجمالية (AI Priority Score):</span>
+              <span class="text-3xl sm:text-4xl font-black text-red-500 font-mono tracking-tight hud-glow-red">94%</span>
+            </div>
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden border border-slate-800">
+              <div class="hud-progress bg-gradient-to-r from-rose-600 to-red-500 h-2.5 rounded-full shadow-[0_0_10px_rgba(239,68,68,0.8)]" style="width: 94%;"></div>
+            </div>
+            <div class="flex justify-between items-center text-[10px] font-mono text-slate-400 mt-1.5">
+              <span>مستوى الخطر: حرج للغاية (CRITICAL)</span>
+              <span>درجة الاستحقاق: المستوى الأول</span>
+            </div>
+          </div>
+
+          <!-- Exact Breakdown Data Fields -->
+          <div class="space-y-3 text-xs sm:text-sm text-slate-300 mb-6">
+            
+            <!-- Distance Metric -->
+            <div class="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-950/50 border border-slate-800/80">
+              <div class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-cyan-400 flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+              </div>
+              <div>
+                <span class="font-bold text-white">المسافة:</span>
+                <span>أقرب برج تغطية يبعد مسافة 10 كيلومترات عن النطاق السكاني.</span>
+              </div>
+            </div>
+
+            <!-- Tower Pressure Metric -->
+            <div class="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-950/50 border border-slate-800/80">
+              <div class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-amber-400 flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+              </div>
+              <div>
+                <span class="font-bold text-white">ضغط الشبكة:</span>
+                <span>نسبة الضغط والتشبع على البرج مرتفعة جداً (92%).</span>
+              </div>
+            </div>
+
+            <!-- Silent Devices Metric (Proactive Drop) -->
+            <div class="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-950/50 border border-slate-800/80">
+              <div class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-red-400 flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 4.243a9 9 0 01-2.828-6.364m0 0L3 3m2.828 5.636a5 5 0 011.415-3.536"></path></svg>
+              </div>
+              <div>
+                <span class="font-bold text-white">الأجهزة الصامتة:</span>
+                <span>تم رصد 45 جهازاً صامتاً كان لديه إرسال واختفى فجأة في هذه المنطقة.</span>
+              </div>
+            </div>
+
+            <!-- Temporary Signal Dispatch Metric -->
+            <div class="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-950/50 border border-slate-800/80">
+              <div class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-cyan-400 flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.14 0M1.393 9.393c5.857-5.857 15.355-5.857 21.213 0"></path></svg>
+              </div>
+              <div>
+                <span class="font-bold text-white">الحالة الاستباقية:</span>
+                <span>قام النظام بإصدار إرسال مؤقت للمنطقة لتغطية الفراغ طارئاً.</span>
+              </div>
+            </div>
+
+            <!-- Manual Reports Volume Metric -->
+            <div class="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-950/50 border border-slate-800/80">
+              <div class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-rose-400 flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              </div>
+              <div>
+                <span class="font-bold text-white">البلاغات الواردة:</span>
+                <span>عدد البلاغات اليدوية من العملاء كبير جداً (18 بلاغاً).</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- AI Final Decision Recommendation (Clean Text Label - ZERO EMOJIS) -->
+          <div class="bg-red-950/60 border border-red-500/50 rounded-xl p-3.5 mb-6 text-xs sm:text-sm text-red-200 leading-relaxed shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+            <span class="font-black text-red-400 ml-1">توصية هامة جداً:</span>
+            الحالة حرجة للغاية، يتطلب توجيه وإرسال فرقة صيانة ميدانية للحل الفوري.
+          </div>
+        </div>
+
+        <!-- 4. Action Buttons per Card -->
+        <div class="space-y-2.5 pt-3 border-t border-slate-800">
+          
+          <!-- Automated Satellite Fallback Coverage Control Panel -->
+          <div class="satellite-control-box p-3 rounded-xl bg-slate-950/90 border border-emerald-500/30 text-xs shadow-inner space-y-2.5">
+            <!-- Status Note -->
+            <div class="flex items-center gap-2 text-slate-200">
+              <span class="relative flex h-2 w-2 flex-shrink-0">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 shadow-[0_0_6px_#10b981]"></span>
+              </span>
+              <span class="satellite-status-note text-[11px] sm:text-xs leading-relaxed">
+                <span class="font-bold text-emerald-400">حالة الربط:</span> تم تفعيل اتصال طوارئ مؤقت عبر الأقمار الصناعية تلقائياً.
+              </span>
+            </div>
+
+            <!-- Dual Decision Buttons Side-by-Side -->
+            <div class="grid grid-cols-2 gap-2">
+              <!-- 1. Approve/Continue Button (Green/Cyan accent) -->
+              <button 
+                type="button" 
+                onclick="approveSatelliteLink('قرية الوهط / برج تواصل #402', this)"
+                class="btn-approve-satellite w-full min-h-[44px] bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 active:scale-[0.98] text-white font-bold text-[11px] sm:text-xs py-2 px-2.5 rounded-lg shadow-[0_0_12px_rgba(16,185,129,0.35)] border border-emerald-400/40 transition-all flex items-center justify-center text-center gap-1.5 leading-snug">
+                <svg class="w-3.5 h-3.5 text-emerald-200 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span>موافقة واستمرار الاتصال الفضائي</span>
+              </button>
+
+              <!-- 2. Disconnect/Terminate Button (Subtle Red/Border button) -->
+              <button 
+                type="button" 
+                onclick="terminateSatelliteLink('قرية الوهط / برج تواصل #402', this)"
+                class="btn-terminate-satellite w-full min-h-[44px] bg-slate-950/80 hover:bg-rose-950/50 border border-rose-500/40 hover:border-rose-400 active:scale-[0.98] text-rose-300 hover:text-white font-medium text-[11px] sm:text-xs py-2 px-2.5 rounded-lg transition-all flex items-center justify-center text-center gap-1.5 leading-snug">
+                <svg class="w-3.5 h-3.5 text-rose-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <span>إنهاء التغطية الفضائية</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <button 
+              type="button" 
+              onclick="showSilentDevicesModal('قرية الوهط / برج تواصل #402', 45)"
+              class="w-full bg-slate-950/80 hover:bg-slate-800/80 border border-slate-700 hover:border-cyan-400 text-slate-300 hover:text-white font-medium text-xs py-2.5 px-3 rounded-xl transition-all flex items-center justify-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+              <span>الأجهزة الصامتة</span>
+            </button>
+
+            <button 
+              type="button" 
+              onclick="dismissCard('card-alwahat')"
+              class="w-full bg-slate-950/80 hover:bg-slate-800/80 border border-slate-700 hover:border-slate-500 text-slate-400 hover:text-slate-200 font-medium text-xs py-2.5 px-3 rounded-xl transition-all flex items-center justify-center gap-1.5">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+              <span>إغلاق التنبيه</span>
+            </button>
+          </div>
+        </div>
+
+      </article>
+
+      <!-- ========================================================= -->
+      <!-- CARD 2: قرية ديراب / برج شبكة رقم #215                     -->
+      <!-- ========================================================= -->
+      <article id="card-dirab" class="group relative bg-slate-900/90 backdrop-blur-2xl border border-red-500/50 shadow-[0_0_25px_rgba(239,68,68,0.2)] hover:shadow-[0_0_35px_rgba(239,68,68,0.35)] rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 overflow-hidden">
+        
+        <!-- Glowing Top Cyber Accent Line -->
+        <div class="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-red-600 via-rose-500 to-amber-500 shadow-[0_0_12px_rgba(239,68,68,0.7)]"></div>
+
+        <!-- Corner Tech Decorations -->
+        <div class="absolute top-2 left-2 w-2.5 h-2.5 border-t border-l border-red-500/70 pointer-events-none"></div>
+        <div class="absolute top-2 right-2 w-2.5 h-2.5 border-t border-r border-red-500/70 pointer-events-none"></div>
+
+        <div>
+          <!-- AI Engine Badge -->
+          <div class="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-800">
+            <span class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-bold bg-red-950/90 text-red-300 border border-red-500/60 font-mono">
+              <span class="w-1.5 h-1.5 rounded-full bg-red-400 animate-ping"></span>
+              تحليل وكيل الذكاء الاصطناعي - AI Priority & Risk Engine
+            </span>
+            <span class="text-[10px] font-mono text-slate-500">ZONE-ID: #DR-215</span>
+          </div>
+
+          <!-- Zone & Target Tower Name -->
+          <div class="mb-5">
+            <div class="text-xs font-bold text-red-400 font-mono uppercase tracking-wider mb-1">نطاق التغطية المستهدف</div>
+            <h3 class="text-xl sm:text-2xl font-black text-white font-cairo">
+              قرية ديراب / برج شبكة رقم #215
+            </h3>
+          </div>
+
+          <!-- AI Priority Score (88%) -->
+          <div class="bg-slate-950/80 border border-red-500/40 rounded-xl p-4 mb-5 shadow-inner">
+            <div class="flex items-baseline justify-between mb-2">
+              <span class="text-xs font-bold text-slate-300 font-cairo">مؤشر الأولوية الإجمالية (AI Priority Score):</span>
+              <span class="text-3xl sm:text-4xl font-black text-red-500 font-mono tracking-tight hud-glow-red">88%</span>
+            </div>
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden border border-slate-800">
+              <div class="hud-progress bg-gradient-to-r from-red-600 to-rose-500 h-2.5 rounded-full shadow-[0_0_10px_rgba(239,68,68,0.8)]" style="width: 88%;"></div>
+            </div>
+            <div class="flex justify-between items-center text-[10px] font-mono text-slate-400 mt-1.5">
+              <span>مستوى الخطر: خطر انقطاع وشيك (HIGH RISK)</span>
+              <span>درجة الاستحقاق: المستوى الأول</span>
+            </div>
+          </div>
+
+          <!-- Breakdown Data Fields -->
+          <div class="space-y-3 text-xs sm:text-sm text-slate-300 mb-6">
+            
+            <div class="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-950/50 border border-slate-800/80">
+              <div class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-cyan-400 flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+              </div>
+              <div>
+                <span class="font-bold text-white">المسافة:</span>
+                <span>أقرب برج تغطية يبعد مسافة 8.5 كيلومترات عن المركز السكني.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-950/50 border border-slate-800/80">
+              <div class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-amber-400 flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+              </div>
+              <div>
+                <span class="font-bold text-white">ضغط الشبكة:</span>
+                <span>نسبة الحمل والتشبع بلغت 87% مع ارتفاع زمن الاستجابة (Latency).</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-950/50 border border-slate-800/80">
+              <div class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-red-400 flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 4.243a9 9 0 01-2.828-6.364m0 0L3 3m2.828 5.636a5 5 0 011.415-3.536"></path></svg>
+              </div>
+              <div>
+                <span class="font-bold text-white">الأجهزة الصامتة:</span>
+                <span>تم رصد 31 جهازاً صامتاً فقدت التردد خلال آخر 20 دقيقة.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-950/50 border border-slate-800/80">
+              <div class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-cyan-400 flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.14 0M1.393 9.393c5.857-5.857 15.355-5.857 21.213 0"></path></svg>
+              </div>
+              <div>
+                <span class="font-bold text-white">الحالة الاستباقية:</span>
+                <span>تم تفعيل بث تردد احتياطي مؤقت لإنقاذ الاتصالات الحرجة.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-950/50 border border-slate-800/80">
+              <div class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-rose-400 flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              </div>
+              <div>
+                <span class="font-bold text-white">البلاغات الواردة:</span>
+                <span>تم تسجيل 12 بلاغاً يدوياً من المشتركين.</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- AI Final Decision Recommendation -->
+          <div class="bg-red-950/60 border border-red-500/50 rounded-xl p-3.5 mb-6 text-xs sm:text-sm text-red-200 leading-relaxed">
+            <span class="font-black text-red-400 ml-1">توصية هامة جداً:</span>
+            خطر انهيار جزئي في النطاق، يوصى بإعادة توجيه هوائيات البرج المجاور واعتماد فرقة دعم فني.
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="space-y-2.5 pt-3 border-t border-slate-800">
+          
+          <!-- Automated Satellite Fallback Coverage Control Panel -->
+          <div class="satellite-control-box p-3 rounded-xl bg-slate-950/90 border border-emerald-500/30 text-xs shadow-inner space-y-2.5">
+            <!-- Status Note -->
+            <div class="flex items-center gap-2 text-slate-200">
+              <span class="relative flex h-2 w-2 flex-shrink-0">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 shadow-[0_0_6px_#10b981]"></span>
+              </span>
+              <span class="satellite-status-note text-[11px] sm:text-xs leading-relaxed">
+                <span class="font-bold text-emerald-400">حالة الربط:</span> تم تفعيل اتصال طوارئ مؤقت عبر الأقمار الصناعية تلقائياً.
+              </span>
+            </div>
+
+            <!-- Dual Decision Buttons Side-by-Side -->
+            <div class="grid grid-cols-2 gap-2">
+              <!-- 1. Approve/Continue Button (Green/Cyan accent) -->
+              <button 
+                type="button" 
+                onclick="approveSatelliteLink('قرية ديراب / برج شبكة #215', this)"
+                class="btn-approve-satellite w-full min-h-[44px] bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 active:scale-[0.98] text-white font-bold text-[11px] sm:text-xs py-2 px-2.5 rounded-lg shadow-[0_0_12px_rgba(16,185,129,0.35)] border border-emerald-400/40 transition-all flex items-center justify-center text-center gap-1.5 leading-snug">
+                <svg class="w-3.5 h-3.5 text-emerald-200 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span>موافقة واستمرار الاتصال الفضائي</span>
+              </button>
+
+              <!-- 2. Disconnect/Terminate Button (Subtle Red/Border button) -->
+              <button 
+                type="button" 
+                onclick="terminateSatelliteLink('قرية ديراب / برج شبكة #215', this)"
+                class="btn-terminate-satellite w-full min-h-[44px] bg-slate-950/80 hover:bg-rose-950/50 border border-rose-500/40 hover:border-rose-400 active:scale-[0.98] text-rose-300 hover:text-white font-medium text-[11px] sm:text-xs py-2 px-2.5 rounded-lg transition-all flex items-center justify-center text-center gap-1.5 leading-snug">
+                <svg class="w-3.5 h-3.5 text-rose-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <span>إنهاء التغطية الفضائية</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <button 
+              type="button" 
+              onclick="showSilentDevicesModal('قرية ديراب / برج شبكة #215', 31)"
+              class="w-full bg-slate-950/80 hover:bg-slate-800/80 border border-slate-700 hover:border-cyan-400 text-slate-300 hover:text-white font-medium text-xs py-2.5 px-3 rounded-xl transition-all flex items-center justify-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+              <span>الأجهزة الصامتة</span>
+            </button>
+
+            <button 
+              type="button" 
+              onclick="dismissCard('card-dirab')"
+              class="w-full bg-slate-950/80 hover:bg-slate-800/80 border border-slate-700 hover:border-slate-500 text-slate-400 hover:text-slate-200 font-medium text-xs py-2.5 px-3 rounded-xl transition-all flex items-center justify-center gap-1.5">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+              <span>إغلاق التنبيه</span>
+            </button>
+          </div>
+        </div>
+
+      </article>
+
+      <!-- ========================================================= -->
+      <!-- CARD 3: قرية الهدا / برج المرتفعات رقم #108               -->
+      <!-- ========================================================= -->
+      <article id="card-alhada" class="group relative bg-slate-900/90 backdrop-blur-2xl border border-cyan-500/40 shadow-[0_0_20px_rgba(0,242,254,0.15)] hover:shadow-[0_0_30px_rgba(0,242,254,0.3)] rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 overflow-hidden">
+        
+        <!-- Glowing Top Cyber Accent Line (Cyan) -->
+        <div class="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-cyan-500 via-sky-400 to-teal-400 shadow-[0_0_12px_rgba(0,242,254,0.7)]"></div>
+
+        <!-- Corner Tech Decorations -->
+        <div class="absolute top-2 left-2 w-2.5 h-2.5 border-t border-l border-cyan-500/70 pointer-events-none"></div>
+        <div class="absolute top-2 right-2 w-2.5 h-2.5 border-t border-r border-cyan-500/70 pointer-events-none"></div>
+
+        <div>
+          <!-- AI Engine Badge -->
+          <div class="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-800">
+            <span class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-bold bg-cyan-950/80 text-cyan-300 border border-cyan-500/50 font-mono">
+              <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
+              تحليل وكيل الذكاء الاصطناعي - AI Priority & Risk Engine
+            </span>
+            <span class="text-[10px] font-mono text-slate-500">ZONE-ID: #HD-108</span>
+          </div>
+
+          <!-- Zone & Target Tower Name -->
+          <div class="mb-5">
+            <div class="text-xs font-bold text-cyan-400 font-mono uppercase tracking-wider mb-1">نطاق التغطية المستهدف</div>
+            <h3 class="text-xl sm:text-2xl font-black text-white font-cairo">
+              قرية الهدا / برج المرتفعات رقم #108
+            </h3>
+          </div>
+
+          <!-- AI Priority Score (73%) -->
+          <div class="bg-slate-950/80 border border-cyan-500/30 rounded-xl p-4 mb-5 shadow-inner">
+            <div class="flex items-baseline justify-between mb-2">
+              <span class="text-xs font-bold text-slate-300 font-cairo">مؤشر الأولوية الإجمالية (AI Priority Score):</span>
+              <span class="text-3xl sm:text-4xl font-black text-cyan-400 font-mono tracking-tight hud-glow-cyan">73%</span>
+            </div>
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden border border-slate-800">
+              <div class="hud-progress bg-gradient-to-r from-cyan-500 to-blue-500 h-2.5 rounded-full shadow-[0_0_10px_rgba(0,242,254,0.6)]" style="width: 73%;"></div>
+            </div>
+            <div class="flex justify-between items-center text-[10px] font-mono text-slate-400 mt-1.5">
+              <span>مستوى الخطر: تذبذب ترددات (MODERATE)</span>
+              <span>درجة الاستحقاق: المستوى الثاني</span>
+            </div>
+          </div>
+
+          <!-- Breakdown Data Fields -->
+          <div class="space-y-3 text-xs sm:text-sm text-slate-300 mb-6">
+            
+            <div class="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-950/50 border border-slate-800/80">
+              <div class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-cyan-400 flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+              </div>
+              <div>
+                <span class="font-bold text-white">المسافة:</span>
+                <span>أقرب برج تغطية يبعد مسافة 4.2 كيلومترات عن النطاق السكاني.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-950/50 border border-slate-800/80">
+              <div class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-amber-400 flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+              </div>
+              <div>
+                <span class="font-bold text-white">ضغط الشبكة:</span>
+                <span>نسبة الاستهلاك 68% مع تذبذب في كفاءة التغطية بالمرتفعات.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-950/50 border border-slate-800/80">
+              <div class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-cyan-400 flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 4.243a9 9 0 01-2.828-6.364m0 0L3 3m2.828 5.636a5 5 0 011.415-3.536"></path></svg>
+              </div>
+              <div>
+                <span class="font-bold text-white">الأجهزة الصامتة:</span>
+                <span>تم رصد 16 جهازاً صامتاً تعاني من انخفاض مفاجئ في مستوى الـ dBm.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-950/50 border border-slate-800/80">
+              <div class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-cyan-400 flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.14 0M1.393 9.393c5.857-5.857 15.355-5.857 21.213 0"></path></svg>
+              </div>
+              <div>
+                <span class="font-bold text-white">الحالة الاستباقية:</span>
+                <span>جاري موازنة الأحمال آلياً بواسطة وكيل الذكاء الاصطناعي.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-950/50 border border-slate-800/80">
+              <div class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-rose-400 flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              </div>
+              <div>
+                <span class="font-bold text-white">البلاغات الواردة:</span>
+                <span>تم تسجيل 5 بلاغات يدوية فقط حتى الآن.</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- AI Final Decision Recommendation -->
+          <div class="bg-cyan-950/60 border border-cyan-500/40 rounded-xl p-3.5 mb-6 text-xs sm:text-sm text-cyan-200 leading-relaxed">
+            <span class="font-black text-cyan-300 ml-1">توصية هامة:</span>
+            مراقبة مسار التغطية وإجراء فحص ذاتي هوائي للبرج قبل إرسال فرقة صيانة.
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="space-y-2.5 pt-3 border-t border-slate-800">
+          
+          <!-- Automated Satellite Fallback Coverage Control Panel -->
+          <div class="satellite-control-box p-3 rounded-xl bg-slate-950/90 border border-emerald-500/30 text-xs shadow-inner space-y-2.5">
+            <!-- Status Note -->
+            <div class="flex items-center gap-2 text-slate-200">
+              <span class="relative flex h-2 w-2 flex-shrink-0">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 shadow-[0_0_6px_#10b981]"></span>
+              </span>
+              <span class="satellite-status-note text-[11px] sm:text-xs leading-relaxed">
+                <span class="font-bold text-emerald-400">حالة الربط:</span> تم تفعيل اتصال طوارئ مؤقت عبر الأقمار الصناعية تلقائياً.
+              </span>
+            </div>
+
+            <!-- Dual Decision Buttons Side-by-Side -->
+            <div class="grid grid-cols-2 gap-2">
+              <!-- 1. Approve/Continue Button (Green/Cyan accent) -->
+              <button 
+                type="button" 
+                onclick="approveSatelliteLink('قرية الهدا / برج المرتفعات #108', this)"
+                class="btn-approve-satellite w-full min-h-[44px] bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 active:scale-[0.98] text-white font-bold text-[11px] sm:text-xs py-2 px-2.5 rounded-lg shadow-[0_0_12px_rgba(16,185,129,0.35)] border border-emerald-400/40 transition-all flex items-center justify-center text-center gap-1.5 leading-snug">
+                <svg class="w-3.5 h-3.5 text-emerald-200 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span>موافقة واستمرار الاتصال الفضائي</span>
+              </button>
+
+              <!-- 2. Disconnect/Terminate Button (Subtle Red/Border button) -->
+              <button 
+                type="button" 
+                onclick="terminateSatelliteLink('قرية الهدا / برج المرتفعات #108', this)"
+                class="btn-terminate-satellite w-full min-h-[44px] bg-slate-950/80 hover:bg-rose-950/50 border border-rose-500/40 hover:border-rose-400 active:scale-[0.98] text-rose-300 hover:text-white font-medium text-[11px] sm:text-xs py-2 px-2.5 rounded-lg transition-all flex items-center justify-center text-center gap-1.5 leading-snug">
+                <svg class="w-3.5 h-3.5 text-rose-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <span>إنهاء التغطية الفضائية</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <button 
+              type="button" 
+              onclick="showSilentDevicesModal('قرية الهدا / برج المرتفعات #108', 16)"
+              class="w-full bg-slate-950/80 hover:bg-slate-800/80 border border-slate-700 hover:border-cyan-400 text-slate-300 hover:text-white font-medium text-xs py-2.5 px-3 rounded-xl transition-all flex items-center justify-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+              <span>الأجهزة الصامتة</span>
+            </button>
+
+            <button 
+              type="button" 
+              onclick="dismissCard('card-alhada')"
+              class="w-full bg-slate-950/80 hover:bg-slate-800/80 border border-slate-700 hover:border-slate-500 text-slate-400 hover:text-slate-200 font-medium text-xs py-2.5 px-3 rounded-xl transition-all flex items-center justify-center gap-1.5">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+              <span>إغلاق التنبيه</span>
+            </button>
+          </div>
+        </div>
+
+      </article>
+
+    </div>
+
+  </main>
+
+  <!-- ========================================================= -->
+  <!-- MODAL 1: SILENT DEVICES TELEMETRY BREAKDOWN               -->
+  <!-- ========================================================= -->
+  <div id="silentDevicesModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md hidden">
+    <div class="bg-slate-900/95 backdrop-blur-2xl border border-cyan-500/40 rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-[0_0_40px_rgba(0,242,254,0.3)] text-right relative text-white animate-in fade-in zoom-in duration-300">
+      
+      <!-- Close Button -->
+      <button type="button" onclick="closeModal('silentDevicesModal')" class="absolute top-4 left-4 text-slate-400 hover:text-white p-2 rounded-full hover:bg-slate-800 transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-cyan-950 border border-cyan-400/50 flex items-center justify-center text-cyan-400">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+        </div>
+        <div>
+          <h3 class="text-lg sm:text-xl font-bold font-cairo text-white">تفاصيل الأجهزة الصامتة المرصودة استباقياً</h3>
+          <p id="modalZoneSubtitle" class="text-xs text-cyan-400 font-mono">قرية الوهط / برج تواصل #402</p>
+        </div>
+      </div>
+
+      <p class="text-xs sm:text-sm text-slate-300 mb-5 leading-relaxed">
+        الأجهزة المسجلة أدناه كانت متصلة بالشبكة بكفاءة طبيعية، ثم فُقدت إشارتها بشكل متزامن خلال نافذة زمنية موحدة مما يؤكد وجود انقطاع بنيوي في البرج وليس أعطالاً فردية.
+      </p>
+
+      <!-- Telemetry Data Table -->
+      <div class="bg-slate-950/90 border border-slate-800 rounded-xl overflow-hidden mb-6 text-xs font-mono">
+        <table class="w-full text-right">
+          <thead class="bg-slate-900/90 text-slate-400 border-b border-slate-800">
+            <tr>
+              <th class="p-2.5">معرف الجهاز (Masked)</th>
+              <th class="p-2.5">وقت الانقطاع</th>
+              <th class="p-2.5">آخر قوة إشارة</th>
+              <th class="p-2.5">الحالة</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60 text-slate-200">
+            <tr>
+              <td class="p-2.5">IMSI-***8291</td>
+              <td class="p-2.5">17:42:10</td>
+              <td class="p-2.5 text-rose-400">-118 dBm</td>
+              <td class="p-2.5 text-cyan-400">مشمول بالبث المؤقت</td>
+            </tr>
+            <tr>
+              <td class="p-2.5">IMSI-***4102</td>
+              <td class="p-2.5">17:42:14</td>
+              <td class="p-2.5 text-rose-400">-121 dBm</td>
+              <td class="p-2.5 text-cyan-400">مشمول بالبث المؤقت</td>
+            </tr>
+            <tr>
+              <td class="p-2.5">IMSI-***9034</td>
+              <td class="p-2.5">17:42:25</td>
+              <td class="p-2.5 text-rose-400">-119 dBm</td>
+              <td class="p-2.5 text-cyan-400">مشمول بالبث المؤقت</td>
+            </tr>
+            <tr>
+              <td class="p-2.5">IMSI-***7511</td>
+              <td class="p-2.5">17:42:38</td>
+              <td class="p-2.5 text-rose-400">-125 dBm</td>
+              <td class="p-2.5 text-cyan-400">مشمول بالبث المؤقت</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="flex justify-end">
+        <button type="button" onclick="closeModal('silentDevicesModal')" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs sm:text-sm py-2 px-6 rounded-xl transition-all shadow-md">
+          إغلاق النافذة
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- MODAL 2: AI MULTI-AGENT ANALYSIS ASSESSMENT VIEW           -->
+  <!-- ========================================================= -->
+  <div id="aiAssessmentModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md hidden">
+    <div class="bg-slate-900/95 backdrop-blur-2xl border border-cyan-500/50 rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-[0_0_50px_rgba(0,242,254,0.35)] text-right relative text-white animate-in fade-in zoom-in duration-300 overflow-hidden max-h-[90vh] overflow-y-auto">
+      
+      <!-- Glowing Cyber Accent Line -->
+      <div class="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-red-600 via-rose-500 to-cyan-400 shadow-[0_0_12px_rgba(0,242,254,0.8)]"></div>
+
+      <!-- Close Button -->
+      <button type="button" onclick="closeModal('aiAssessmentModal')" class="absolute top-4 left-4 text-slate-400 hover:text-white p-2 rounded-full hover:bg-slate-800 transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+
+      <!-- Header -->
+      <div class="flex items-center gap-3.5 mb-5">
+        <div class="w-12 h-12 rounded-2xl bg-cyan-950 border border-cyan-400/60 flex items-center justify-center text-cyan-400 shadow-[0_0_20px_rgba(0,242,254,0.35)] flex-shrink-0">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-xs font-mono font-bold text-cyan-400 bg-cyan-950/80 px-2.5 py-0.5 rounded-full border border-cyan-500/40">
+              YAQEEN AI MULTI-AGENT INTAKE
+            </span>
+            <span id="aiModalLiveBadge" class="text-[10px] font-mono text-rose-400 bg-rose-950/80 px-2 py-0.5 rounded-full border border-rose-500/50 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping"></span>
+              LIVE REPORT
+            </span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-black text-white font-cairo">
+            تقييم الذكاء الاصطناعي للبلاغ الوارد: <span id="aiModalZoneName" class="text-cyan-300">حي الوسام</span>
+          </h3>
+        </div>
+      </div>
+
+      <!-- Quick Summary Card -->
+      <div class="bg-slate-950/90 border border-slate-800 rounded-2xl p-4 sm:p-5 mb-5 shadow-inner">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+          <div class="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
+            <div class="text-[10px] text-slate-400 font-mono">البرج المستهدف</div>
+            <div id="aiModalTower" class="text-xs font-bold text-white mt-1 truncate">برج الوسام #104</div>
+          </div>
+          <div class="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
+            <div class="text-[10px] text-slate-400 font-mono">مؤشر الخطورة</div>
+            <div id="aiModalScore" class="text-sm font-black text-rose-400 font-mono mt-0.5">96% CRITICAL</div>
+          </div>
+          <div class="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
+            <div class="text-[10px] text-slate-400 font-mono">أجهزة صامتة مرصودة</div>
+            <div id="aiModalSilent" class="text-sm font-black text-cyan-400 font-mono mt-0.5">42 جهازاً</div>
+          </div>
+          <div class="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
+            <div class="text-[10px] text-slate-400 font-mono">الإحداثيات الجغرافية</div>
+            <div id="aiModalCoords" class="text-[11px] font-mono text-slate-300 mt-1 truncate">21.2612° N, 40.3842° E</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Agents Assessment Stream -->
+      <div class="space-y-3.5 mb-6 text-xs sm:text-sm">
+        
+        <!-- Agent 1: NLP & Dialect -->
+        <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 flex items-start gap-3">
+          <div class="w-7 h-7 rounded-lg bg-cyan-950/80 border border-cyan-500/40 text-cyan-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+          </div>
+          <div class="flex-1">
+            <div class="font-bold text-cyan-300 mb-0.5">تحليل اللهجة والشكوى (YAQEEN-NLP Agent):</div>
+            <p id="aiModalCustomerComplaint" class="text-slate-300 leading-relaxed text-xs">
+              تم رصد بلاغ من المشترك يفيد بـ: "انقطاع تام (لا يوجد إرسال)". تطابق العبارات بنسبة 97.4% مع أنماط العطل المفاجئ في المحطة.
+            </p>
+          </div>
+        </div>
+
+        <!-- Agent 2: RF Correlation -->
+        <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 flex items-start gap-3">
+          <div class="w-7 h-7 rounded-lg bg-amber-950/80 border border-amber-500/40 text-amber-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          </div>
+          <div class="flex-1">
+            <div class="font-bold text-amber-300 mb-0.5">تطابق القياسات الراديوية (RF Telemetry Correlation):</div>
+            <p id="aiModalRfAnalysis" class="text-slate-300 leading-relaxed text-xs">
+              تزامن لحظي بين البلاغ وانخفاض معدل نقل البيانات في البرج إلى ما دون 8% من طاقته الاعتيادية، مما يؤكد صحة البلاغ ويرفع تصنيفه إلى أولوية استجابة قصوى.
+            </p>
+          </div>
+        </div>
+
+        <!-- Agent 3: Autonomous Decision -->
+        <div class="p-3.5 rounded-xl bg-slate-950/70 border border-emerald-500/30 flex items-start gap-3">
+          <div class="w-7 h-7 rounded-lg bg-emerald-950/80 border border-emerald-500/40 text-emerald-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+          </div>
+          <div class="flex-1">
+            <div class="font-bold text-emerald-300 mb-0.5">إجراء الذكاء الاصطناعي الاستباقي المعتمد:</div>
+            <p id="aiModalDecision" class="text-slate-300 leading-relaxed text-xs">
+              تم تصعيد المنطقة للمرتبة الأولى في لوحة المشغلين، وتجهيز ربط طوارئ عبر الأقمار الصناعية، وإرسال إشعار فوري لمهندسي الصيانة الميدانية.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-800">
+        <div class="flex items-center gap-2">
+          <button 
+            type="button" 
+            onclick="focusOnDynamicCard()"
+            class="bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold text-xs sm:text-sm py-2.5 px-5 rounded-xl shadow-[0_0_15px_rgba(239,68,68,0.4)] transition-all">
+            الانتقال لبطاقة المنطقة وتأكيد الإجراء
+          </button>
+          <a 
+            href="map.html" 
+            class="bg-slate-950/80 hover:bg-slate-800 border border-slate-700 hover:border-cyan-400 text-slate-300 hover:text-white font-semibold text-xs sm:text-sm py-2.5 px-4 rounded-xl transition-all">
+            خريطة الرادار
+          </a>
+        </div>
+
+        <button 
+          type="button" 
+          onclick="closeModal('aiAssessmentModal')" 
+          class="text-slate-400 hover:text-white font-semibold text-xs py-2 px-3 transition-colors">
+          إغلاق التقييم
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- TOAST NOTIFICATION HUD (ZERO EMOJIS - Clean Vector SVGs)   -->
+  <!-- ========================================================= -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 bg-slate-900/95 backdrop-blur-xl text-white px-5 py-3 rounded-xl shadow-2xl border border-cyan-500/40 flex items-center gap-3 text-xs sm:text-sm transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div id="toastIconBox" class="w-5 h-5 rounded-full bg-cyan-950 border border-cyan-400/50 flex items-center justify-center text-cyan-400 flex-shrink-0">
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+    </div>
+    <span id="toastMessage">تم تسجيل الإجراء التشغيلي بنجاح.</span>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- FOOTER (التذييل السيبراني الرسمي)                          -->
+  <!-- ========================================================= -->
+  <footer class="w-full bg-slate-950/90 backdrop-blur-xl border-t border-slate-800 mt-12 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+      <div class="flex items-center gap-3">
+        <img src="Minimalist_tech_logo_design_Yaqeen_20260930083231.jpg_2K_20260930083859.jpg" alt="إشارة يقين" class="w-6 h-6 rounded-md object-cover">
+        <span class="font-bold text-white font-cairo">إشارة يقين (YAQEEN SIGNAL AI) - لوحة المشغلين</span>
+        <span>•</span>
+        <span class="font-mono">© 2026 جميع الحقوق محفوظة</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="hover:text-cyan-400 transition-colors">بوابة المنظومة</a>
+        <a href="map.html" class="hover:text-cyan-400 transition-colors">خريطة التغطية</a>
+        <a href="customer.html" class="hover:text-red-400 transition-colors">بوابة العملاء</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================= -->
+  <!-- INTERACTIVE LOGIC SCRIPT (ZERO EMOJIS)                    -->
+  <!-- ========================================================= -->
+  <script>
+    // 0. Official Taif Districts & Rural Centers Telemetry Database
+    const TAIF_DISTRICTS = {
+      "حي الوسام": {
+        cell_id: "CELL-001",
+        zone_id: "#WS-001",
+        tower_name: "برج الوسام رقم #104",
+        coords: "21.2612° N, 40.3842° E",
+        nearest_tower_dist: "1.8 كم",
+        pressure: "95%",
+        silent_devices: 42,
+        priority_score: 96,
+        risk_level: "حرج للغاية (CRITICAL)",
+        risk_color: "red",
+        recommendation: "انقطاع حرج في ترددات البرج الرئيسي، يوصى باعتماد فرقة طوارئ فورية وتثبيت البث الفضائي."
+      },
+      "شهار": {
+        cell_id: "CELL-SH-002",
+        zone_id: "#SH-002",
+        tower_name: "برج شهار المحوري رقم #208",
+        coords: "21.2483° N, 40.4194° E",
+        nearest_tower_dist: "2.4 كم",
+        pressure: "89%",
+        silent_devices: 28,
+        priority_score: 87,
+        risk_level: "مرتفع الخطورة (HIGH RISK)",
+        risk_color: "red",
+        recommendation: "تذبذب عالي في الإشارة ناتج عن ضغط الشبكة، يوصى بإعادة موازنة الحمل وتوجيه الترددات."
+      },
+      "الهدا": {
+        cell_id: "CELL-HD-003",
+        zone_id: "#HD-108",
+        tower_name: "برج الهدا المرتفعات رقم #108",
+        coords: "21.3541° N, 40.2872° E",
+        nearest_tower_dist: "4.2 كم",
+        pressure: "68%",
+        silent_devices: 16,
+        priority_score: 74,
+        risk_level: "تذبذب ترددات بالمرتفعات (MODERATE)",
+        risk_color: "cyan",
+        recommendation: "مراقبة مسار التغطية بالمرتفعات وإجراء فحص ذاتي للهوائيات."
+      },
+      "الشفا": {
+        cell_id: "CELL-SF-004",
+        zone_id: "#SF-305",
+        tower_name: "برج الشفا الجبلي رقم #305",
+        coords: "21.0784° N, 40.3312° E",
+        nearest_tower_dist: "5.1 كم",
+        pressure: "82%",
+        silent_devices: 34,
+        priority_score: 85,
+        risk_level: "انخفاض نطاق التغطية الجبلية (HIGH RISK)",
+        risk_color: "red",
+        recommendation: "تأثر الإشارة بالتضاريس الجبلية، تفعيل مقويات التردد الاحتياطية."
+      },
+      "بني سعد": {
+        cell_id: "CELL-BS-005",
+        zone_id: "#BS-512",
+        tower_name: "برج بني سعد الريفي رقم #512",
+        coords: "21.0125° N, 40.7188° E",
+        nearest_tower_dist: "8.0 كم",
+        pressure: "91%",
+        silent_devices: 38,
+        priority_score: 93,
+        risk_level: "انقطاع حرج في النطاق الريفي (CRITICAL)",
+        risk_color: "red",
+        recommendation: "المسافة بعيدة عن أقرب برج فرعي، توجيه وحدة بث متنقلة (COW) فوراً."
+      },
+      "الحوية": {
+        cell_id: "CELL-HW-006",
+        zone_id: "#HW-601",
+        tower_name: "برج الحوية الشمالي رقم #601",
+        coords: "21.4312° N, 40.5011° E",
+        nearest_tower_dist: "2.1 كم",
+        pressure: "94%",
+        silent_devices: 50,
+        priority_score: 95,
+        risk_level: "تشبع فائق وبلاغات متكررة (CRITICAL)",
+        risk_color: "red",
+        recommendation: "تشبع هائل في قطاع البيانات، تفعيل الخلايا الصغيرة وتوسيع النطاق الترددي."
+      },
+      "القمرية": {
+        cell_id: "CELL-QM-007",
+        zone_id: "#QM-703",
+        tower_name: "برج القمرية رقم #703",
+        coords: "21.2789° N, 40.4321° E",
+        nearest_tower_dist: "3.0 كم",
+        pressure: "75%",
+        silent_devices: 19,
+        priority_score: 79,
+        risk_level: "ضغط متوسط (MODERATE)",
+        risk_color: "amber",
+        recommendation: "فحص قطاع الإرسال الشرقي وتحسين استجابة المودم اللاسلكي."
+      },
+      "السداد": {
+        cell_id: "CELL-SD-008",
+        zone_id: "#SD-804",
+        tower_name: "برج السداد رقم #804",
+        coords: "21.2315° N, 40.3950° E",
+        nearest_tower_dist: "2.7 كم",
+        pressure: "86%",
+        silent_devices: 27,
+        priority_score: 88,
+        risk_level: "تأثر جزئي في التغطية (HIGH RISK)",
+        risk_color: "red",
+        recommendation: "إعادة ضبط زوايا التوجيه الهوائي وتكثيف المراقبة اللحظية."
+      },
+      "ثقيف": {
+        cell_id: "CELL-TQ-009",
+        zone_id: "#TQ-905",
+        tower_name: "برج ثقيف رقم #905",
+        coords: "20.7320° N, 40.7580° E",
+        nearest_tower_dist: "9.2 كم",
+        pressure: "88%",
+        silent_devices: 30,
+        priority_score: 91,
+        risk_level: "عزلة ترددية للمنطقة (CRITICAL)",
+        risk_color: "red",
+        recommendation: "تفعيل الربط بالأقمار الصناعية لضمان بقاء الاتصالات الطارئة مستمرة."
+      },
+      "الوهط": {
+        cell_id: "CELL-WH-010",
+        zone_id: "#WH-402",
+        tower_name: "برج تواصل رقم #402",
+        coords: "21.2150° N, 40.3620° E",
+        nearest_tower_dist: "10.0 كم",
+        pressure: "92%",
+        silent_devices: 45,
+        priority_score: 94,
+        risk_level: "حرج للغاية (CRITICAL)",
+        risk_color: "red",
+        recommendation: "الحالة حرجة للغاية، يتطلب توجيه وإرسال فرقة صيانة ميدانية للحل الفوري."
+      },
+      "عودة": {
+        cell_id: "CELL-OD-011",
+        zone_id: "#OD-112",
+        tower_name: "برج عودة رقم #112",
+        coords: "21.2405° N, 40.3755° E",
+        nearest_tower_dist: "3.5 كم",
+        pressure: "79%",
+        silent_devices: 21,
+        priority_score: 82,
+        risk_level: "تذبذب إشارة (MODERATE-HIGH)",
+        risk_color: "amber",
+        recommendation: "إعادة معايرة الترددات وضمان ثبات مسار الألياف البصرية الموصلة للبرج."
+      }
+    };
+
+    // 1. Satellite Fallback Decision Actions (ZERO EMOJIS)
+    function approveSatelliteLink(zoneName, btnElement) {
+      const parent = btnElement.closest('.satellite-control-box');
+      if (parent) {
+        const note = parent.querySelector('.satellite-status-note');
+        if (note) {
+          note.innerHTML = '<span class="font-bold text-emerald-400">حالة الربط:</span> تم تأكيد واستمرار الاتصال الفضائي بنجاح.';
+        }
+        const terminateBtn = parent.querySelector('.btn-terminate-satellite');
+        if (terminateBtn) {
+          terminateBtn.disabled = true;
+          terminateBtn.classList.add('opacity-40', 'cursor-not-allowed');
+        }
+      }
+      btnElement.disabled = true;
+      btnElement.className = 'btn-approve-satellite w-full min-h-[44px] bg-emerald-950/90 border border-emerald-500/60 text-emerald-300 font-bold text-[11px] sm:text-xs py-2 px-2.5 rounded-lg flex items-center justify-center text-center gap-1.5 cursor-default leading-snug shadow-none';
+      btnElement.innerHTML = `
+        <svg class="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+        <span>تم اعتماد الاستمرار الفضائي</span>
+      `;
+      showToast(`تمت الموافقة وتثبيت الاتصال الفضائي المؤقت لمنطقة: ${zoneName}`, 'success');
+    }
+
+    function terminateSatelliteLink(zoneName, btnElement) {
+      const parent = btnElement.closest('.satellite-control-box');
+      if (parent) {
+        const note = parent.querySelector('.satellite-status-note');
+        if (note) {
+          note.innerHTML = '<span class="font-bold text-rose-400">حالة الربط:</span> تم إنهاء التغطية الفضائية وإرجاع المسار للأبراج الأرضية.';
+        }
+        const approveBtn = parent.querySelector('.btn-approve-satellite');
+        if (approveBtn) {
+          approveBtn.disabled = true;
+          approveBtn.classList.add('opacity-40', 'cursor-not-allowed');
+        }
+      }
+      btnElement.disabled = true;
+      btnElement.className = 'btn-terminate-satellite w-full min-h-[44px] bg-rose-950/80 border border-rose-500/60 text-rose-300 font-bold text-[11px] sm:text-xs py-2 px-2.5 rounded-lg flex items-center justify-center text-center gap-1.5 cursor-default leading-snug shadow-none';
+      btnElement.innerHTML = `
+        <svg class="w-3.5 h-3.5 text-rose-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        <span>تم إنهاء التغطية الفضائية</span>
+      `;
+      showToast(`تم إنهاء التغطية الفضائية المؤقتة لمنطقة: ${zoneName}`, 'warning');
+    }
+
+    // 2. Show Silent Devices Modal
+    function showSilentDevicesModal(zoneName, count) {
+      document.getElementById('modalZoneSubtitle').textContent = `${zoneName} (إجمالي ${count} جهازاً صامتاً)`;
+      document.getElementById('silentDevicesModal').classList.remove('hidden');
+    }
+
+    // 3. Close Modal
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.add('hidden');
+    }
+
+    // 4. Dismiss Card Action
+    function dismissCard(cardId) {
+      const card = document.getElementById(cardId);
+      if (card) {
+        card.style.opacity = '0.3';
+        card.style.transform = 'scale(0.96)';
+        setTimeout(() => {
+          card.classList.add('hidden');
+          showToast('تمت أرشفة تنبيه المنطقة بنجاح من شاشة المراقبة اللحظية.', 'info');
+        }, 300);
+      }
+    }
+
+    // 5. Toast Notification Helper (ZERO EMOJIS, Vector SVGs only)
+    function showToast(message, type = 'info') {
+      const toastNotification = document.getElementById('toastNotification');
+      const toastMessage = document.getElementById('toastMessage');
+      const toastIconBox = document.getElementById('toastIconBox');
+
+      toastMessage.textContent = message;
+      if (type === 'success') {
+        toastIconBox.className = 'w-5 h-5 rounded-full bg-emerald-950 border border-emerald-400 text-emerald-400 flex items-center justify-center flex-shrink-0';
+        toastIconBox.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>';
+      } else if (type === 'warning') {
+        toastIconBox.className = 'w-5 h-5 rounded-full bg-amber-950 border border-amber-400 text-amber-400 flex items-center justify-center flex-shrink-0';
+        toastIconBox.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>';
+      } else {
+        toastIconBox.className = 'w-5 h-5 rounded-full bg-cyan-950 border border-cyan-400 text-cyan-400 flex items-center justify-center flex-shrink-0';
+        toastIconBox.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
+      }
+      
+      toastNotification.classList.remove('translate-y-24', 'opacity-0');
+      setTimeout(() => {
+        toastNotification.classList.add('translate-y-24', 'opacity-0');
+      }, 4000);
+    }
+
+    // 6. Dynamic Customer Report Prepend & AI Assessment Integration
+    function renderActiveReportedCell(autoOpenModal = true) {
+      const rawData = localStorage.getItem('active_reported_cell');
+      if (!rawData) return;
+
+      let report;
+      try {
+        report = JSON.parse(rawData);
+      } catch (e) {
+        return;
+      }
+      if (!report || !report.neighborhood) return;
+
+      const districtInfo = TAIF_DISTRICTS[report.neighborhood] || TAIF_DISTRICTS["حي الوسام"];
+      const cellId = report.cell_id || districtInfo.cell_id;
+      const zoneId = report.zone_id || districtInfo.zone_id;
+      const towerName = report.tower_name || districtInfo.tower_name;
+      const coords = report.coords || districtInfo.coords;
+      const score = report.priority_score || districtInfo.priority_score || 96;
+      const nearestDist = report.nearest_tower_dist || districtInfo.nearest_tower_dist || '1.8 كم';
+      const pressure = report.pressure || districtInfo.pressure || '95%';
+      const silentCount = report.silent_devices || districtInfo.silent_devices || 42;
+      const riskLevel = report.risk_level || districtInfo.risk_level || 'حرج للغاية (CRITICAL)';
+      const recommendation = report.recommendation || districtInfo.recommendation || 'انقطاع حرج في ترددات البرج الرئيسي، يوصى باعتماد فرقة طوارئ فورية.';
+      const problemType = report.problem_type || 'انقطاع تام (لا يوجد إرسال)';
+      const complaintText = report.complaint_text || 'انقطاع وضعف شديد في الإرسال';
+      const phone = report.phone ? (report.phone.slice(0, 3) + '****' + report.phone.slice(-3)) : '050****';
+      const timeStr = report.timestamp_formatted || 'الآن';
+
+      // Remove existing dynamic card if already rendered
+      const existingDynamic = document.getElementById('card-dynamic-report');
+      if (existingDynamic) {
+        existingDynamic.remove();
+      }
+
+      // Build the dynamic priority card HTML
+      const card = document.createElement('article');
+      card.id = 'card-dynamic-report';
+      card.className = 'group relative bg-slate-900/95 backdrop-blur-2xl border-2 border-red-500 shadow-[0_0_35px_rgba(239,68,68,0.35)] hover:shadow-[0_0_45px_rgba(239,68,68,0.5)] rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 overflow-hidden ring-2 ring-red-500/30';
+      
+      card.innerHTML = `
+        <!-- Glowing Top Cyber Accent Line (Flashing Red-Rose) -->
+        <div class="absolute top-0 right-0 left-0 h-1.5 bg-gradient-to-r from-red-600 via-rose-500 to-cyan-400 shadow-[0_0_15px_rgba(239,68,68,0.9)] animate-pulse"></div>
+
+        <!-- Corner Tech Decorations -->
+        <div class="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-red-500 pointer-events-none"></div>
+        <div class="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-red-500 pointer-events-none"></div>
+
+        <div>
+          <!-- AI Engine & Live Intake Badge -->
+          <div class="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-800">
+            <span class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-bold bg-red-950/95 text-red-300 border border-red-500/70 font-mono shadow-[0_0_12px_rgba(239,68,68,0.5)]">
+              <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+              بلاغ عميل مباشر - أولوية عاجلة (LIVE INCIDENT)
+            </span>
+            <span class="text-[10px] font-mono text-cyan-400 font-bold">ZONE-ID: ${zoneId}</span>
+          </div>
+
+          <!-- Zone & Target Tower Name -->
+          <div class="mb-4">
+            <div class="flex items-center justify-between text-xs font-bold text-red-400 font-mono uppercase tracking-wider mb-1">
+              <span>نطاق التغطية المستهدف (تم التحديد بالبلاغ)</span>
+              <span class="text-[11px] text-slate-400 font-mono">${timeStr}</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-black text-white font-cairo">
+              ${report.neighborhood} / ${towerName}
+            </h3>
+            <div class="text-[11px] font-mono text-cyan-400 mt-1">
+              خلية: ${cellId} | إحداثيات: ${coords}
+            </div>
+          </div>
+
+          <!-- AI Priority Score -->
+          <div class="bg-slate-950/85 border border-red-500/50 rounded-xl p-4 mb-5 shadow-inner">
+            <div class="flex items-baseline justify-between mb-2">
+              <span class="text-xs font-bold text-slate-200 font-cairo">مؤشر الأولوية الإجمالية (AI Priority Score):</span>
+              <span class="text-3xl sm:text-4xl font-black text-red-500 font-mono tracking-tight hud-glow-red">${score}%</span>
+            </div>
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden border border-slate-800">
+              <div class="hud-progress bg-gradient-to-r from-rose-600 via-red-500 to-amber-500 h-2.5 rounded-full shadow-[0_0_12px_rgba(239,68,68,0.9)]" style="width: ${score}%;"></div>
+            </div>
+            <div class="flex justify-between items-center text-[10px] font-mono text-slate-400 mt-1.5">
+              <span class="text-rose-400 font-bold">مستوى الخطر: ${riskLevel}</span>
+              <span>درجة الاستحقاق: المستوى الأول (عاجل)</span>
+            </div>
+          </div>
+
+          <!-- Breakdown Data Fields -->
+          <div class="space-y-3 text-xs sm:text-sm text-slate-300 mb-6">
+            
+            <!-- Distance Metric -->
+            <div class="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-950/50 border border-slate-800/80">
+              <div class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-cyan-400 flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+              </div>
+              <div>
+                <span class="font-bold text-white">المسافة:</span>
+                <span>أقرب برج تغطية يبعد مسافة ${nearestDist} عن النطاق السكاني.</span>
+              </div>
+            </div>
+
+            <!-- Tower Pressure Metric -->
+            <div class="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-950/50 border border-slate-800/80">
+              <div class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-amber-400 flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+              </div>
+              <div>
+                <span class="font-bold text-white">ضغط الشبكة:</span>
+                <span>نسبة الضغط والتشبع على البرج مرتفعة جداً (${pressure}).</span>
+              </div>
+            </div>
+
+            <!-- Silent Devices Metric -->
+            <div class="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-950/50 border border-slate-800/80">
+              <div class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-red-400 flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 4.243a9 9 0 01-2.828-6.364m0 0L3 3m2.828 5.636a5 5 0 011.415-3.536"></path></svg>
+              </div>
+              <div>
+                <span class="font-bold text-white">الأجهزة الصامتة:</span>
+                <span>تم رصد ${silentCount} جهازاً صامتاً فقدت التردد تزامناً مع البلاغ.</span>
+              </div>
+            </div>
+
+            <!-- Live Reported Complaint Details -->
+            <div class="flex items-start gap-2.5 p-2.5 rounded-xl bg-red-950/40 border border-red-500/40">
+              <div class="w-6 h-6 rounded-lg bg-red-900/60 border border-red-500/50 flex items-center justify-center text-red-400 flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              </div>
+              <div class="text-xs leading-relaxed">
+                <div class="font-bold text-red-300">بلاغ المشترك (${phone}):</div>
+                <div class="text-white mt-0.5"><span class="text-slate-400">نوع العطل:</span> ${problemType}</div>
+                <div class="text-slate-200 mt-0.5 italic">"${complaintText}"</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- AI Final Decision Recommendation -->
+          <div class="bg-red-950/70 border border-red-500/60 rounded-xl p-3.5 mb-6 text-xs sm:text-sm text-red-200 leading-relaxed shadow-[0_0_15px_rgba(239,68,68,0.25)]">
+            <span class="font-black text-red-400 ml-1">توصية الذكاء الاصطناعي:</span>
+            ${recommendation}
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="space-y-2.5 pt-3 border-t border-slate-800">
+          
+          <!-- Automated Satellite Fallback Coverage Control Panel -->
+          <div class="satellite-control-box p-3 rounded-xl bg-slate-950/90 border border-emerald-500/30 text-xs shadow-inner space-y-2.5">
+            <div class="flex items-center gap-2 text-slate-200">
+              <span class="relative flex h-2 w-2 flex-shrink-0">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 shadow-[0_0_6px_#10b981]"></span>
+              </span>
+              <span class="satellite-status-note text-[11px] sm:text-xs leading-relaxed">
+                <span class="font-bold text-emerald-400">حالة الربط:</span> تم تفعيل اتصال طوارئ مؤقت عبر الأقمار الصناعية لمنطقة ${report.neighborhood}.
+              </span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2">
+              <button 
+                type="button" 
+                onclick="approveSatelliteLink('${report.neighborhood} / ${towerName}', this)"
+                class="btn-approve-satellite w-full min-h-[44px] bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 active:scale-[0.98] text-white font-bold text-[11px] sm:text-xs py-2 px-2.5 rounded-lg shadow-[0_0_12px_rgba(16,185,129,0.35)] border border-emerald-400/40 transition-all flex items-center justify-center text-center gap-1.5 leading-snug">
+                <svg class="w-3.5 h-3.5 text-emerald-200 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                <span>موافقة واستمرار الاتصال الفضائي</span>
+              </button>
+
+              <button 
+                type="button" 
+                onclick="terminateSatelliteLink('${report.neighborhood} / ${towerName}', this)"
+                class="btn-terminate-satellite w-full min-h-[44px] bg-slate-950/80 hover:bg-rose-950/50 border border-rose-500/40 hover:border-rose-400 active:scale-[0.98] text-rose-300 hover:text-white font-medium text-[11px] sm:text-xs py-2 px-2.5 rounded-lg transition-all flex items-center justify-center text-center gap-1.5 leading-snug">
+                <svg class="w-3.5 h-3.5 text-rose-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <span>إنهاء التغطية الفضائية</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <button 
+              type="button" 
+              onclick="openAiAssessmentModal()"
+              class="w-full bg-cyan-950/80 hover:bg-cyan-900/80 border border-cyan-500/50 hover:border-cyan-400 text-cyan-300 hover:text-white font-medium text-xs py-2.5 px-3 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-[0_0_12px_rgba(0,242,254,0.2)]">
+              <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              <span>تقييم الذكاء الاصطناعي</span>
+            </button>
+
+            <button 
+              type="button" 
+              onclick="showSilentDevicesModal('${report.neighborhood} / ${towerName}', ${silentCount})"
+              class="w-full bg-slate-950/80 hover:bg-slate-800/80 border border-slate-700 hover:border-cyan-400 text-slate-300 hover:text-white font-medium text-xs py-2.5 px-3 rounded-xl transition-all flex items-center justify-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+              <span>الأجهزة الصامتة (${silentCount})</span>
+            </button>
+          </div>
+
+          <div>
+            <button 
+              type="button" 
+              onclick="dismissCard('card-dynamic-report')"
+              class="w-full bg-slate-950/60 hover:bg-slate-800/80 border border-slate-800 hover:border-slate-600 text-slate-400 hover:text-slate-200 font-medium text-xs py-2 px-3 rounded-xl transition-all flex items-center justify-center gap-1.5">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+              <span>أرشفة البلاغ من المراقبة المباشرة</span>
+            </button>
+          </div>
+
+        </div>
+      `;
+
+      // Prepend to operations grid
+      const operationsGrid = document.getElementById('operationsGrid');
+      if (operationsGrid) {
+        operationsGrid.prepend(card);
+      }
+
+      // Populate AI assessment modal with live details
+      populateAiAssessmentModal(report, districtInfo);
+
+      // Trigger modal automatically if requested
+      if (autoOpenModal) {
+        openAiAssessmentModal();
+        showToast(`تم استقبال بلاغ جديد لمنطقة (${report.neighborhood}) وترقيتها لأولوية المراقبة وتقييم الخلل عبر AI`, 'info');
+      }
+    }
+
+    function populateAiAssessmentModal(report, districtInfo) {
+      const zoneEl = document.getElementById('aiModalZoneName');
+      const towerEl = document.getElementById('aiModalTower');
+      const scoreEl = document.getElementById('aiModalScore');
+      const silentEl = document.getElementById('aiModalSilent');
+      const coordsEl = document.getElementById('aiModalCoords');
+      const complaintEl = document.getElementById('aiModalCustomerComplaint');
+      const decisionEl = document.getElementById('aiModalDecision');
+
+      if (zoneEl) zoneEl.textContent = report.neighborhood;
+      if (towerEl) towerEl.textContent = report.tower_name || districtInfo.tower_name;
+      if (scoreEl) scoreEl.textContent = `${report.priority_score || 96}% CRITICAL`;
+      if (silentEl) silentEl.textContent = `${report.silent_devices || 42} جهازاً`;
+      if (coordsEl) coordsEl.textContent = report.coords || districtInfo.coords;
+      
+      const phoneMasked = report.phone ? (report.phone.slice(0, 3) + '****' + report.phone.slice(-3)) : '050****';
+      if (complaintEl) {
+        complaintEl.innerHTML = `
+          تم استلام بلاغ من المشترك (<span class="font-mono text-cyan-400">${phoneMasked}</span>) يفيد بـ: 
+          <strong class="text-white">"${report.problem_type || 'انقطاع تام'}"</strong> - 
+          <span class="italic text-slate-200">"${report.complaint_text || 'انقطاع وضعف شديد'}"</span>.
+          اكتشف نموذج اللغة دلالة انقطاع وتراجع حاد في إشارة الموقع الجغرافي.
+        `;
+      }
+      if (decisionEl) decisionEl.textContent = report.recommendation || districtInfo.recommendation;
+    }
+
+    function openAiAssessmentModal() {
+      const modal = document.getElementById('aiAssessmentModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+      }
+    }
+
+    function focusOnDynamicCard() {
+      closeModal('aiAssessmentModal');
+      const card = document.getElementById('card-dynamic-report');
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.classList.add('ring-4', 'ring-cyan-400');
+        setTimeout(() => {
+          card.classList.remove('ring-4', 'ring-cyan-400');
+        }, 2500);
+      }
+    }
+
+    // 7. Initialize Dynamic Storage Listener & Initial Render
+    document.addEventListener('DOMContentLoaded', () => {
+      renderActiveReportedCell(true);
+    });
+
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'active_reported_cell') {
+        renderActiveReportedCell(true);
+      }
+    });
+  </script>
+</body>
+</html>

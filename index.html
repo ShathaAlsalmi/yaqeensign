@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إشارة يقين | ذكاء استباقي لإدارة شبكات الاتصالات والبلاغات</title>
+  
+  <!-- Meta description for SEO -->
+  <meta name="description" content="إشارة يقين - نظام الذكاء الاصطناعي المتعدد للاتصالات لرصد تدهور الشبكات استباقياً وتحليل البلاغات بدقة فائقة.">
+
+  <!-- Google Fonts: Cairo & Tajawal -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <!-- AOS (Animate On Scroll) CSS CDN -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            cairo: ['Cairo', 'sans-serif'],
+            tajawal: ['Tajawal', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              cyan: '#00f2fe',
+              neon: '#00e5ff',
+              blue: '#0284c7',
+              dark: '#030b17',
+              accent: '#38bdf8'
+            }
+          },
+          animation: {
+            'pulse-glow': 'pulseGlow 2.5s infinite ease-in-out',
+            'float': 'floating 3s ease-in-out infinite',
+            'shimmer': 'shimmer 2.5s infinite linear',
+          },
+          keyframes: {
+            pulseGlow: {
+              '0%, 100%': { boxShadow: '0 0 15px rgba(0, 242, 254, 0.4), inset 0 0 10px rgba(0, 242, 254, 0.2)' },
+              '50%': { boxShadow: '0 0 30px rgba(0, 242, 254, 0.8), inset 0 0 18px rgba(0, 242, 254, 0.4)' },
+            },
+            floating: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-6px)' }
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Cairo', 'Tajawal', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #030b17;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    /* High-contrast text shadows ensuring 100% legibility over raw bright video without any dark overlay */
+    .hero-title-shadow {
+      text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.95),
+        0 4px 12px rgba(0, 0, 0, 0.9),
+        0 10px 24px rgba(0, 0, 0, 0.85),
+        0 0 30px rgba(0, 242, 254, 0.35);
+    }
+
+    .hero-subtitle-shadow {
+      text-shadow: 
+        0 2px 6px rgba(0, 0, 0, 0.95),
+        0 4px 14px rgba(0, 0, 0, 0.9),
+        0 8px 20px rgba(0, 0, 0, 0.85);
+    }
+
+    .badge-shadow {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 242, 254, 0.3);
+    }
+
+    /* Glassmorphism styling with backdrop blur and vibrant borders */
+    .glass-pill {
+      background: rgba(8, 20, 36, 0.55);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(0, 242, 254, 0.45);
+    }
+
+    .glass-card-btn {
+      background: rgba(6, 17, 33, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .glass-card-btn:hover {
+      background: rgba(10, 31, 58, 0.82);
+      border-color: rgba(0, 242, 254, 0.8);
+      box-shadow: 0 12px 35px -4px rgba(0, 242, 254, 0.45), 0 0 20px rgba(0, 242, 254, 0.3);
+      transform: translateY(-4px) scale(1.02);
+    }
+
+    /* Gradient accent on text */
+    .neon-gradient-text {
+      background: linear-gradient(135deg, #ffffff 30%, #38bdf8 70%, #00f2fe 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .neon-cyan-text {
+      background: linear-gradient(135deg, #38bdf8 0%, #00f2fe 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-[#030b17] text-white antialiased selection:bg-brand-cyan selection:text-black">
+
+  <!-- ========================================================= -->
+  <!-- HERO SECTION                                              -->
+  <!-- ========================================================= -->
+  <header class="min-h-screen w-full relative overflow-hidden flex flex-col justify-between">
+
+    <!-- 1. BACKGROUND VIDEO (100% Bright, Absolutely NO dark overlays or opacity filters) -->
+    <video 
+      autoplay 
+      muted 
+      loop 
+      playsinline 
+      class="absolute inset-0 w-full h-full object-cover -z-10"
+      id="hero-bg-video">
+      <source src="Digital_map_connecting_network_n…_20260930070403.mp4" type="video/mp4">
+      متصفحك لا يدعم تشغيل مقاطع الفيديو.
+    </video>
+
+    <!-- Top Navigation / Brand Status Bar (Sticky Glassmorphism Header) -->
+    <nav class="sticky top-0 w-full px-6 lg:px-16 py-3.5 flex items-center justify-between z-30 bg-slate-950/60 backdrop-blur-md border-b border-white/10 shadow-lg" aria-label="شريط التنقل الرئيسي">
+      <!-- Logo & System Identity -->
+      <a href="index.html" class="flex items-center gap-3.5 group">
+        <img 
+          src="Minimalist_tech_logo_design_Yaqeen_20260930083231.jpg_2K_20260930083859.jpg" 
+          alt="شعار إشارة يقين" 
+          class="w-11 h-11 rounded-xl object-cover border border-cyan-500/40 shadow-[0_0_12px_rgba(6,182,212,0.4)] group-hover:scale-105 group-hover:border-cyan-400 transition-all">
+        <div class="text-right">
+          <span class="text-xl font-black tracking-wide text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] group-hover:text-cyan-300 transition-colors">إشارة يقين</span>
+          <span class="block text-[11px] font-semibold text-cyan-400 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)] tracking-wider font-mono">YAQEEN SIGNAL AI</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <div class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300">
+        <a href="#workflow" class="hover:text-cyan-400 transition-colors">رحلة البلاغ</a>
+        <a href="#business-model" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5 font-bold text-emerald-300/90">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          نماذج الأعمال
+        </a>
+        <a href="map.html" class="hover:text-cyan-400 transition-colors">خريطة الأبراج</a>
+        <a href="customer.html" class="hover:text-red-400 transition-colors">بوابة العملاء</a>
+        <a href="employee.html" class="hover:text-cyan-400 transition-colors">لوحة الموظفين</a>
+      </div>
+
+      <!-- Live Telecom Grid Status Indicator -->
+      <div class="flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-xl border border-cyan-500/30 text-xs font-semibold text-white shadow-lg">
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500 shadow-[0_0_8px_#10b981]"></span>
+        </span>
+        <span class="text-emerald-400 font-bold">حالة الشبكة:</span>
+        <span class="text-slate-100">تعمل بكفاءة 99.9%</span>
+      </div>
+    </nav>
+
+    <!-- 2. MIDDLE AREA: Center & Left completely open for video; Right side has connected Tech HUD Cards -->
+    <div class="w-full flex-1 flex items-center justify-start px-6 lg:px-16 z-20 py-6 pointer-events-none">
+      <div class="w-full max-w-md pointer-events-auto relative">
+        
+        <!-- Multi-Agent Network Connected Workflow Cards -->
+        <div class="relative flex flex-col gap-3.5">
+          
+          <!-- Vertical Network Glowing Backbone Line (Connecting Red -> Cyan -> Emerald nodes) -->
+          <div class="absolute top-8 bottom-8 right-6 w-[2px] bg-gradient-to-b from-red-500 via-cyan-400 to-emerald-400 shadow-[0_0_15px_rgba(6,182,212,0.4)] -z-0"></div>
+
+          <!-- Card 1: [تقديم بلاغ عميل] -> Red Glow & Border (Alerts / Incident Intake) -->
+          <a href="customer.html" 
+             id="card-customer"
+             class="group relative z-10 flex items-center justify-between p-4 rounded-2xl bg-slate-900/85 hover:bg-slate-900/95 backdrop-blur-xl border border-red-500/60 hover:border-red-400 text-white shadow-[0_0_20px_rgba(239,68,68,0.3)] hover:shadow-[0_0_30px_rgba(239,68,68,0.55)] transition-all duration-300 hover:-translate-x-2">
+            <div class="flex items-center gap-3.5">
+              <!-- Node 1 Indicator & Icon (Red) -->
+              <div class="relative w-12 h-12 rounded-xl bg-red-950/90 border border-red-500/60 flex items-center justify-center text-red-400 group-hover:scale-110 group-hover:bg-red-500 group-hover:text-white transition-all shadow-[0_0_15px_rgba(239,68,68,0.35)]">
+                <!-- Ping Node Dot (Red) -->
+                <span class="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-red-500 animate-ping opacity-75"></span>
+                <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444]"></span>
+                <!-- Chat / Alert Signal SVG Icon -->
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+              </div>
+
+              <div class="text-right">
+                <div class="flex items-center gap-2 mb-0.5">
+                  <span class="text-[11px] font-mono font-bold text-red-400 tracking-wider">وكيل المستفيد // NODE 01</span>
+                  <!-- Signal Wave Badge (Red) -->
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-red-500/20 text-red-300 border border-red-500/40 flex items-center gap-1 font-bold">
+                    <svg class="w-2.5 h-2.5 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zm6-4a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zm6-3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
+                    </svg>
+                    استقبال بلاغات
+                  </span>
+                </div>
+                <div class="text-base font-extrabold text-white group-hover:text-red-300 transition-colors drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
+                  تقديم بلاغ عميل
+                </div>
+                <div class="text-xs text-slate-300 font-medium">
+                  تسجيل ومتابعة البلاغات فوراً
+                </div>
+              </div>
+            </div>
+
+            <!-- Left arrow for RTL navigation -->
+            <div class="w-8 h-8 rounded-lg bg-red-950/80 border border-red-500/40 flex items-center justify-center text-red-400 group-hover:bg-red-500 group-hover:text-white transition-all">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </div>
+          </a>
+
+          <!-- Connecting Signal Wave Pulse 1 (Red to Cyan transition) -->
+          <div class="flex items-center justify-center gap-2 py-0.5 z-10 text-[10px] font-mono text-cyan-400/90 font-bold drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
+            <span class="w-1.5 h-1.5 rounded-full bg-red-400 animate-ping"></span>
+            <span class="tracking-widest">▼ تدفق بيانات البلاغات والفرز الآلي ▼</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
+          </div>
+
+          <!-- Card 2: [لوحة الموظفين] -> Blue / Cyan Glow & Border (Dispatch & Analytics) -->
+          <a href="employee.html" 
+             id="card-employee"
+             class="group relative z-10 flex items-center justify-between p-4 rounded-2xl bg-slate-900/85 hover:bg-slate-900/95 backdrop-blur-xl border border-cyan-500/60 hover:border-cyan-300 text-white shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.55)] transition-all duration-300 hover:-translate-x-2">
+            <div class="flex items-center gap-3.5">
+              <!-- Node 2 Indicator & Icon (Cyan) -->
+              <div class="relative w-12 h-12 rounded-xl bg-cyan-950/90 border border-cyan-400/60 flex items-center justify-center text-cyan-400 group-hover:scale-110 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-all shadow-[0_0_15px_rgba(6,182,212,0.35)]">
+                <span class="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-cyan-400 animate-ping opacity-75"></span>
+                <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#00e5ff]"></span>
+                <!-- Dashboard / Analytics SVG Icon -->
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+              </div>
+
+              <div class="text-right">
+                <div class="flex items-center gap-2 mb-0.5">
+                  <span class="text-[11px] font-mono font-bold text-cyan-400 tracking-wider">وكيل التوجيه // NODE 02</span>
+                  <!-- Signal Wave Badge (Cyan) -->
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 flex items-center gap-1 font-bold">
+                    <svg class="w-2.5 h-2.5 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zm6-4a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zm6-3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
+                    </svg>
+                    تحليل وتوزيع ذكي
+                  </span>
+                </div>
+                <div class="text-base font-extrabold text-white group-hover:text-cyan-300 transition-colors drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
+                  لوحة الموظفين
+                </div>
+                <div class="text-xs text-slate-300 font-medium">
+                  إدارة المهام والتحليل الذكي
+                </div>
+              </div>
+            </div>
+
+            <div class="w-8 h-8 rounded-lg bg-cyan-950/80 border border-cyan-500/30 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-400 group-hover:text-slate-950 transition-all">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </div>
+          </a>
+
+          <!-- Connecting Signal Wave Pulse 2 (Cyan to Emerald transition) -->
+          <div class="flex items-center justify-center gap-2 py-0.5 z-10 text-[10px] font-mono text-emerald-400/90 font-bold drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
+            <span class="tracking-widest">▼ مزامنة الترددات واستقرار الشبكة ▼</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+          </div>
+
+          <!-- Card 3: [خريطة المراقبة الحية] -> Emerald Green Glow & Border (Live Monitoring / Grid Stability) -->
+          <a href="map.html" 
+             id="card-map"
+             class="group relative z-10 flex items-center justify-between p-4 rounded-2xl bg-slate-900/85 hover:bg-slate-900/95 backdrop-blur-xl border border-emerald-500/60 hover:border-emerald-400 text-white shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.55)] transition-all duration-300 hover:-translate-x-2">
+            <div class="flex items-center gap-3.5">
+              <!-- Node 3 Indicator & Icon (Emerald) -->
+              <div class="relative w-12 h-12 rounded-xl bg-emerald-950/90 border border-emerald-400/60 flex items-center justify-center text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all shadow-[0_0_15px_rgba(16,185,129,0.35)]">
+                <span class="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-emerald-400 animate-ping opacity-75"></span>
+                <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#10b981]"></span>
+                <!-- Map / Radar Antenna SVG Icon -->
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                </svg>
+              </div>
+
+              <div class="text-right">
+                <div class="flex items-center gap-2 mb-0.5">
+                  <span class="text-[11px] font-mono font-bold text-emerald-400 tracking-wider">وكيل الشبكة // NODE 03</span>
+                  <!-- Signal Wave Badge (Emerald) -->
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 flex items-center gap-1 font-bold">
+                    <svg class="w-2.5 h-2.5 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zm6-4a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zm6-3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
+                    </svg>
+                    استقرار 99.9%
+                  </span>
+                </div>
+                <div class="text-base font-extrabold text-white group-hover:text-emerald-300 transition-colors drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
+                  خريطة المراقبة الحية
+                </div>
+                <div class="text-xs text-slate-300 font-medium">
+                  مراقبة التغطية والأبراج لحظياً
+                </div>
+              </div>
+            </div>
+
+            <div class="w-8 h-8 rounded-lg bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-400 group-hover:text-slate-950 transition-all">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </div>
+          </a>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 3. MAIN HEADLINE & DESCRIPTION (At the Bottom Boundary / Transition Line) -->
+    <div class="w-full z-20 border-t border-cyan-500/30 bg-slate-950/70 backdrop-blur-xl px-6 lg:px-16 py-6 shadow-[0_-15px_30px_rgba(0,0,0,0.7)]">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-right">
+        
+        <!-- Headline & Badge Group -->
+        <div class="flex flex-col items-start gap-2">
+          <!-- Glowing High-Tech Badge -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-950/80 border border-cyan-400/50 text-cyan-300 text-xs font-bold shadow-[0_0_15px_rgba(0,242,254,0.3)]">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+            <!-- Sparkle / AI Chip Icon -->
+            <svg class="w-3.5 h-3.5 text-cyan-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
+            </svg>
+            <span>نظام الذكاء الاصطناعي المتعدد للاتصالات</span>
+          </div>
+
+          <!-- Main Headline in Pure Clean White -->
+          <h1 class="text-xl sm:text-2xl lg:text-3xl font-black text-white leading-tight tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+            إشارة يقين <span class="text-cyan-400 font-light mx-2 opacity-90 drop-shadow-[0_0_10px_rgba(0,242,254,0.6)]">|</span> ذكاء استباقي لإدارة شبكات الاتصالات والبلاغات
+          </h1>
+        </div>
+
+        <!-- Description Banner Text -->
+        <div class="max-w-md md:border-r md:border-cyan-500/30 md:pr-6 text-slate-200 text-sm sm:text-base font-normal leading-relaxed drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
+          نظام ذكي يرصد التدهور استباقياً، يحلل البلاغات بدقة، ويسرّع اتخاذ القرار البشري عبر وكلاء الذكاء الاصطناعي المتعددين.
+        </div>
+
+      </div>
+    </div>
+
+  </header>
+
+
+  <!-- ========================================================= -->
+  <!-- SECTION 2: INTERACTIVE WORKFLOW / HOW IT WORKS (رحلة البلاغ) -->
+  <!-- ========================================================= -->
+  <section id="workflow" class="py-24 px-6 lg:px-16 relative bg-[#030b17] border-t border-cyan-500/20 overflow-hidden">
+    <div class="max-w-7xl mx-auto relative z-10">
+      
+      <!-- Section Header -->
+      <div class="text-center mb-16" data-aos="fade-up">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-400/40 text-cyan-300 text-xs font-bold shadow-[0_0_15px_rgba(0,242,254,0.25)] mb-4">
+          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+          <span>مسار العمليات المؤتمت // AUTOMATED PIPELINE</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4 tracking-tight">
+          رحلة البلاغ: من رصد التدهور إلى الحل الذكي في دقائق
+        </h2>
+        <p class="text-slate-300 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
+          سلسلة إجراءات مؤتمتة تربط العميل والمشغل الميداني ومحرك الذكاء الاصطناعي لضمان حل المشكلة بأعلى كفاءة.
+        </p>
+      </div>
+
+      <!-- Timeline Steps with Connecting Beam -->
+      <div class="relative">
+        
+        <!-- Connecting Glowing Horizontal Line (Desktop) -->
+        <div class="hidden lg:block absolute top-1/2 left-0 right-0 h-[2px] bg-gradient-to-r from-red-500 via-cyan-400 to-emerald-400 shadow-[0_0_15px_#00f2fe] -translate-y-1/2 z-0"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 relative z-10">
+          
+          <!-- Step 1 -->
+          <div class="p-8 rounded-3xl bg-slate-900/85 backdrop-blur-xl border border-red-500/40 hover:border-red-400 text-right shadow-2xl transition-all hover:scale-105"
+               data-aos="fade-right"
+               data-aos-delay="100">
+            <div class="flex items-center justify-between mb-6">
+              <span class="w-10 h-10 rounded-xl bg-red-950 border border-red-500 text-red-400 font-mono font-black text-lg flex items-center justify-center shadow-[0_0_12px_rgba(239,68,68,0.4)]">
+                01
+              </span>
+              <span class="text-xs font-bold text-red-400 bg-red-950/60 px-3 py-1 rounded-full border border-red-500/30">
+                استشعار ومدخلات
+              </span>
+            </div>
+            <h3 class="text-xl font-black text-white mb-3">
+              رصد التدهور أو استلام البلاغ
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed mb-4">
+              إما بالتقاط تذبذب إشارة البرج آلياً قبل أن يلاحظ العميل، أو عبر استقبال بلاغ المستفيد عبر بوابة البلاغات وتحديد موقعه الدقيق.
+            </p>
+            <div class="text-xs font-mono text-red-300/80 bg-slate-950/60 p-3 rounded-xl border border-red-500/20">
+              STATUS: Telemetry Received // Event Triggered
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="p-8 rounded-3xl bg-slate-900/85 backdrop-blur-xl border border-cyan-500/40 hover:border-cyan-300 text-right shadow-2xl transition-all hover:scale-105"
+               data-aos="fade-right"
+               data-aos-delay="200">
+            <div class="flex items-center justify-between mb-6">
+              <span class="w-10 h-10 rounded-xl bg-cyan-950 border border-cyan-400 text-cyan-400 font-mono font-black text-lg flex items-center justify-center shadow-[0_0_12px_rgba(0,242,254,0.4)]">
+                02
+              </span>
+              <span class="text-xs font-bold text-cyan-400 bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-500/30">
+                معالجة متعددة الوكلاء
+              </span>
+            </div>
+            <h3 class="text-xl font-black text-white mb-3">
+              الفرز والتحليل بالذكاء التوليدي
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed mb-4">
+              يقوم وكيل التحقق بحساب نسبة موثوقية البلاغ، بينما يقوم وكيل الإجراء بتشخيص الخلل الفني وتقديم خطة معالجة فورية للمهندس.
+            </p>
+            <div class="text-xs font-mono text-cyan-300/80 bg-slate-950/60 p-3 rounded-xl border border-cyan-500/20">
+              STATUS: Multi-Agent Inferred // Confidence 98.4%
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="p-8 rounded-3xl bg-slate-900/85 backdrop-blur-xl border border-emerald-500/40 hover:border-emerald-400 text-right shadow-2xl transition-all hover:scale-105"
+               data-aos="fade-right"
+               data-aos-delay="300">
+            <div class="flex items-center justify-between mb-6">
+              <span class="w-10 h-10 rounded-xl bg-emerald-950 border border-emerald-400 text-emerald-400 font-mono font-black text-lg flex items-center justify-center shadow-[0_0_12px_rgba(16,185,129,0.4)]">
+                03
+              </span>
+              <span class="text-xs font-bold text-emerald-400 bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-500/30">
+                أتمتة وحل ميداني
+              </span>
+            </div>
+            <h3 class="text-xl font-black text-white mb-3">
+              التنفيذ الآلي وإشعار المستفيد
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed mb-4">
+              إعادة ضبط معايير البرج ذاتياً أو توجيه أقرب فريق صيانة بأمر عمل متكامل، مع إرسال تحديثات للمستفيد حتى عودة الإشارة كاملة.
+            </p>
+            <div class="text-xs font-mono text-emerald-300/80 bg-slate-950/60 p-3 rounded-xl border border-emerald-500/20">
+              STATUS: Resolution Executed // SLA 12 Minutes
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  <!-- ========================================================= -->
+  <!-- SECTION 3: BUSINESS MODELS & MONETIZATION (نماذج الأعمال) -->
+  <!-- ========================================================= -->
+  <section id="business-model" class="py-24 px-6 lg:px-16 relative bg-[#020713] border-t border-emerald-500/20 overflow-hidden">
+    
+    <!-- Ambient Cyber Glows -->
+    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-b from-cyan-500/10 via-emerald-500/5 to-transparent blur-3xl pointer-events-none -z-0"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-emerald-500/5 blur-3xl pointer-events-none -z-0"></div>
+    <div class="absolute top-1/2 left-0 w-80 h-80 bg-cyan-500/5 blur-3xl pointer-events-none -z-0"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+      
+      <!-- Section Header -->
+      <div class="text-center mb-16" data-aos="fade-up">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-400/40 text-emerald-300 text-xs font-bold shadow-[0_0_15px_rgba(16,185,129,0.25)] mb-4">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span class="font-mono text-cyan-300">VALUE CREATION & REVENUE ECOSYSTEM //</span>
+          <span>الاستدامة المالية والاستثمار</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4 tracking-tight font-cairo">
+          نماذج الأعمال والعائد الاستثماري (Business Models)
+        </h2>
+        <p class="text-slate-300 max-w-3xl mx-auto text-base sm:text-lg leading-relaxed font-normal">
+          منظومة مستدامة مصممة لخلق قيمة اقتصادية مباشرة لشركات الاتصالات والجهات التنظيمية
+        </p>
+      </div>
+
+      <!-- Three-Card Responsive Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- ======================================================= -->
+        <!-- CARD 1: B2B SaaS                                        -->
+        <!-- ======================================================= -->
+        <div class="p-7 sm:p-8 rounded-3xl bg-slate-900/90 backdrop-blur-2xl border border-cyan-500/30 hover:border-cyan-400 text-right shadow-[0_0_25px_rgba(0,242,254,0.12)] hover:shadow-[0_0_35px_rgba(0,242,254,0.25)] transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between relative overflow-hidden group"
+             data-aos="fade-up"
+             data-aos-delay="100">
+          
+          <!-- Glowing Top Line Accent (Cyan) -->
+          <div class="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-cyan-500 via-sky-400 to-blue-500 shadow-[0_0_12px_rgba(0,242,254,0.8)]"></div>
+
+          <div>
+            <!-- Card Header: Icon & Category Tag -->
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-14 h-14 rounded-2xl bg-cyan-950/90 border border-cyan-400/50 text-cyan-400 flex items-center justify-center shadow-[0_0_16px_rgba(0,242,254,0.3)] group-hover:scale-110 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-all duration-300">
+                <!-- Enterprise Server / Cloud SVG Icon -->
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
+                </svg>
+              </div>
+              <span class="text-xs font-mono font-bold text-cyan-300 bg-cyan-950/80 px-3 py-1 rounded-full border border-cyan-500/40">
+                B2B SAAS
+              </span>
+            </div>
+
+            <!-- Title -->
+            <h3 class="text-xl sm:text-2xl font-black text-white mb-2 font-cairo group-hover:text-cyan-300 transition-colors">
+              اشتراكات البرمجيات كخدمة (B2B SaaS)
+            </h3>
+            <div class="text-[11px] font-mono text-cyan-400/90 mb-5 tracking-wider">
+              ENTERPRISE RECURRING LICENSING
+            </div>
+
+            <!-- Structured Details -->
+            <div class="space-y-4 mb-6 text-sm text-slate-300">
+              
+              <!-- Target -->
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
+                <div class="text-[11px] font-mono text-slate-400 mb-1 flex items-center gap-1.5 font-bold">
+                  <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                  القطاع المستهدف (Target Segment)
+                </div>
+                <p class="text-white font-semibold text-xs sm:text-sm">
+                  مشغلو الاتصالات بالمملكة (stc، موبايلي، زين، سلام، رد بل)
+                </p>
+                <div class="flex flex-wrap gap-1.5 mt-2">
+                  <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-mono text-cyan-300 border border-cyan-500/30">MNOs</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-mono text-cyan-300 border border-cyan-500/30">TowerCo</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-mono text-cyan-300 border border-cyan-500/30">MVNOs</span>
+                </div>
+              </div>
+
+              <!-- Revenue Model -->
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
+                <div class="text-[11px] font-mono text-slate-400 mb-1 flex items-center gap-1.5 font-bold">
+                  <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                  نموذج الإيرادات (Revenue Model)
+                </div>
+                <p class="text-slate-200 text-xs sm:text-sm leading-relaxed">
+                  ترخيص مؤسسي واشتراكات دورية (Enterprise License) تُحسب لكل برج أو نطاق جغرافي مغطى مع اتفاقيات مستوى الخدمة (SLA).
+                </p>
+              </div>
+
+              <!-- Value Proposition -->
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
+                <div class="text-[11px] font-mono text-slate-400 mb-1.5 flex items-center gap-1.5 font-bold">
+                  <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                  القيمة المضافة والعائد (Value Proposition)
+                </div>
+                <ul class="space-y-1.5 text-xs text-slate-300">
+                  <li class="flex items-start gap-2">
+                    <svg class="w-3.5 h-3.5 text-cyan-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                    <span>تقليص تكاليف الصيانة الميدانية بالتشخيص الاستباقي الدقيق.</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-3.5 h-3.5 text-cyan-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                    <span>تفادي الغرامات التنظيمية بمئات الآلاف عبر الاستجابة الفورية.</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-3.5 h-3.5 text-cyan-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                    <span>حماية الحصة السوقية ومنع تسرب العملاء والشكاوى المفتوحة.</span>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Bottom ROI Pill -->
+          <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs">
+            <span class="text-slate-400 font-mono">FINANCIAL IMPACT:</span>
+            <span class="font-bold text-cyan-400 font-mono">ROI ~ 380% ANNUAL</span>
+          </div>
+
+        </div>
+
+        <!-- ======================================================= -->
+        <!-- CARD 2: B2G Government Contracts                        -->
+        <!-- ======================================================= -->
+        <div class="p-7 sm:p-8 rounded-3xl bg-slate-900/90 backdrop-blur-2xl border border-emerald-500/30 hover:border-emerald-400 text-right shadow-[0_0_25px_rgba(16,185,129,0.12)] hover:shadow-[0_0_35px_rgba(16,185,129,0.25)] transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between relative overflow-hidden group"
+             data-aos="fade-up"
+             data-aos-delay="200">
+          
+          <!-- Glowing Top Line Accent (Emerald) -->
+          <div class="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 shadow-[0_0_12px_rgba(16,185,129,0.8)]"></div>
+
+          <div>
+            <!-- Card Header: Icon & Category Tag -->
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-14 h-14 rounded-2xl bg-emerald-950/90 border border-emerald-400/50 text-emerald-400 flex items-center justify-center shadow-[0_0_16px_rgba(16,185,129,0.3)] group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all duration-300">
+                <!-- Shield / Sovereign Building SVG Icon -->
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                </svg>
+              </div>
+              <span class="text-xs font-mono font-bold text-emerald-300 bg-emerald-950/80 px-3 py-1 rounded-full border border-emerald-500/40">
+                B2G GOV
+              </span>
+            </div>
+
+            <!-- Title -->
+            <h3 class="text-xl sm:text-2xl font-black text-white mb-2 font-cairo group-hover:text-emerald-300 transition-colors">
+              الامتثال والرصد السيادي (B2G Government Contracts)
+            </h3>
+            <div class="text-[11px] font-mono text-emerald-400/90 mb-5 tracking-wider">
+              NATIONAL SOVEREIGN OVERSIGHT
+            </div>
+
+            <!-- Structured Details -->
+            <div class="space-y-4 mb-6 text-sm text-slate-300">
+              
+              <!-- Target -->
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
+                <div class="text-[11px] font-mono text-slate-400 mb-1 flex items-center gap-1.5 font-bold">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  القطاع المستهدف (Target Segment)
+                </div>
+                <p class="text-white font-semibold text-xs sm:text-sm">
+                  هيئة الاتصالات والفضاء والتقنية (CST)، برنامج جودة الحياة، وإمارات المناطق (إمارة مكة / محافظة الطائف).
+                </p>
+                <div class="flex flex-wrap gap-1.5 mt-2">
+                  <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-mono text-emerald-300 border border-emerald-500/30">CST Regulatory</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-mono text-emerald-300 border border-emerald-500/30">Smart Cities</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-mono text-emerald-300 border border-emerald-500/30">Quality of Life</span>
+                </div>
+              </div>
+
+              <!-- Revenue Model -->
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
+                <div class="text-[11px] font-mono text-slate-400 mb-1 flex items-center gap-1.5 font-bold">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  نموذج الإيرادات (Revenue Model)
+                </div>
+                <p class="text-slate-200 text-xs sm:text-sm leading-relaxed">
+                  عقود تشغيل منصات الرصد الوطنية ولوحات القيادة السيادية (National Monitoring Dashboard) السنوية.
+                </p>
+              </div>
+
+              <!-- Value Proposition -->
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
+                <div class="text-[11px] font-mono text-slate-400 mb-1.5 flex items-center gap-1.5 font-bold">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  القيمة المضافة والعائد (Value Proposition)
+                </div>
+                <ul class="space-y-1.5 text-xs text-slate-300">
+                  <li class="flex items-start gap-2">
+                    <svg class="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                    <span>تقارير حيادية مدعومة بالأقمار الصناعية وصوت المواطن.</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                    <span>مراقبة عدالة التغطية واستمرارية الخدمات الرقمية بالقرى والمناطق الجبلية.</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                    <span>رصد فوري للامتثال للمعايير الوطنية دون الاعتماد على تقارير المشغل الذاتية.</span>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Bottom ROI Pill -->
+          <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs">
+            <span class="text-slate-400 font-mono">GOVERNANCE METRIC:</span>
+            <span class="font-bold text-emerald-400 font-mono">100% REGULATORY AUDIT</span>
+          </div>
+
+        </div>
+
+        <!-- ======================================================= -->
+        <!-- CARD 3: Pay-per-Event / API Provisioning                -->
+        <!-- ======================================================= -->
+        <div class="p-7 sm:p-8 rounded-3xl bg-slate-900/90 backdrop-blur-2xl border border-sky-500/30 hover:border-sky-400 text-right shadow-[0_0_25px_rgba(56,189,248,0.12)] hover:shadow-[0_0_35px_rgba(56,189,248,0.25)] transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between relative overflow-hidden group"
+             data-aos="fade-up"
+             data-aos-delay="300">
+          
+          <!-- Glowing Top Line Accent (Sky/Blue) -->
+          <div class="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-sky-400 via-cyan-400 to-indigo-500 shadow-[0_0_12px_rgba(56,189,248,0.8)]"></div>
+
+          <div>
+            <!-- Card Header: Icon & Category Tag -->
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-14 h-14 rounded-2xl bg-sky-950/90 border border-sky-400/50 text-sky-400 flex items-center justify-center shadow-[0_0_16px_rgba(56,189,248,0.3)] group-hover:scale-110 group-hover:bg-sky-500 group-hover:text-slate-950 transition-all duration-300">
+                <!-- Satellite / Signal Flash SVG Icon -->
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.14 0M1.393 9.393c5.857-5.857 15.355-5.857 21.213 0"></path>
+                </svg>
+              </div>
+              <span class="text-xs font-mono font-bold text-sky-300 bg-sky-950/80 px-3 py-1 rounded-full border border-sky-500/40">
+                PAY-PER-EVENT
+              </span>
+            </div>
+
+            <!-- Title -->
+            <h3 class="text-xl sm:text-2xl font-black text-white mb-2 font-cairo group-hover:text-sky-300 transition-colors">
+              رسوم التفعيل والحلول الإسعافية (Pay-per-Event / API)
+            </h3>
+            <div class="text-[11px] font-mono text-sky-400/90 mb-5 tracking-wider">
+              ON-DEMAND EMERGENCY SATELLITE ROUTING
+            </div>
+
+            <!-- Structured Details -->
+            <div class="space-y-4 mb-6 text-sm text-slate-300">
+              
+              <!-- Target -->
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
+                <div class="text-[11px] font-mono text-slate-400 mb-1 flex items-center gap-1.5 font-bold">
+                  <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+                  القطاع المستهدف (Target Segment)
+                </div>
+                <p class="text-white font-semibold text-xs sm:text-sm">
+                  مزودو خدمة الإنترنت الفضائي وباقات الاتصال الطارئ.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mt-2">
+                  <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-mono text-sky-300 border border-sky-500/30">Satellite LEO/GEO</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-mono text-sky-300 border border-sky-500/30">Disaster Recovery</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-mono text-sky-300 border border-sky-500/30">Crisis APIs</span>
+                </div>
+              </div>
+
+              <!-- Revenue Model -->
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
+                <div class="text-[11px] font-mono text-slate-400 mb-1 flex items-center gap-1.5 font-bold">
+                  <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+                  نموذج الإيرادات (Revenue Model)
+                </div>
+                <p class="text-slate-200 text-xs sm:text-sm leading-relaxed">
+                  رسوم ربط وعمولة تشغيل (API Routing Fee) لكل استدعاء آلي لخدمة التغطية المؤقتة (عبر أداة <code class="text-sky-300 font-mono text-[11px] bg-slate-900 px-1.5 py-0.5 rounded border border-sky-500/30">request_temp_coverage</code>).
+                </p>
+              </div>
+
+              <!-- Value Proposition -->
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
+                <div class="text-[11px] font-mono text-slate-400 mb-1.5 flex items-center gap-1.5 font-bold">
+                  <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+                  القيمة المضافة والعائد (Value Proposition)
+                </div>
+                <ul class="space-y-1.5 text-xs text-slate-300">
+                  <li class="flex items-start gap-2">
+                    <svg class="w-3.5 h-3.5 text-sky-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                    <span>تسييل فوري للبنية التحتية البديلة والأقمار الصناعية عند الأزمات فقط.</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-3.5 h-3.5 text-sky-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                    <span>تأمين اتصال فوري للمتضررين دون هدر مالي دائم أو تكاليف مستمرة.</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-3.5 h-3.5 text-sky-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                    <span>مرونة مطلقة بنظام الدفع عند الحاجة والاستخدام الفعلي (On-Demand).</span>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Bottom ROI Pill -->
+          <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs">
+            <span class="text-slate-400 font-mono">DISPATCH MODEL:</span>
+            <span class="font-bold text-sky-400 font-mono">AUTOMATED PAY-PER-CALL</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- FOOTER                                                    -->
+  <!-- ========================================================= -->
+  <footer class="py-12 px-6 lg:px-16 bg-slate-950 border-t border-white/10 text-white relative z-20">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      <!-- Brand & Description -->
+      <div class="flex items-center gap-3">
+        <img 
+          src="Minimalist_tech_logo_design_Yaqeen_20260930083231.jpg_2K_20260930083859.jpg" 
+          alt="شعار إشارة يقين" 
+          class="w-10 h-10 rounded-xl object-cover border border-cyan-500/40">
+        <div class="text-right">
+          <div class="text-lg font-black text-white">إشارة يقين</div>
+          <div class="text-[11px] font-mono text-cyan-400">منظومة الذكاء الاصطناعي الاستباقي للاتصالات</div>
+        </div>
+      </div>
+
+      <!-- Quick Nav Links -->
+      <div class="flex items-center gap-6 text-sm text-slate-300 font-medium">
+        <a href="#workflow" class="hover:text-cyan-400 transition-colors">رحلة البلاغ</a>
+        <a href="#business-model" class="hover:text-emerald-400 transition-colors">نماذج الأعمال</a>
+        <a href="customer.html" class="hover:text-red-400 transition-colors">بوابة العملاء</a>
+        <a href="employee.html" class="hover:text-cyan-400 transition-colors">لوحة الموظفين</a>
+        <a href="map.html" class="hover:text-emerald-400 transition-colors">خريطة الأبراج</a>
+      </div>
+
+      <!-- Copyright -->
+      <div class="text-xs text-slate-400 font-mono text-center md:text-left">
+        © 2026 إشارة يقين (YAQEEN SIGNAL AI). جميع الحقوق محفوظة.
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- AOS (Animate On Scroll) JS CDN -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Video fallback & AOS initialization script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize AOS with smooth scroll transitions
+      if (typeof AOS !== 'undefined') {
+        AOS.init({
+          duration: 850,
+          once: false,
+          easing: 'ease-out-cubic',
+          offset: 100
+        });
+      }
+
+      // Ensure seamless autoplay on all mobile & desktop browsers
+      const video = document.getElementById('hero-bg-video');
+      if (video) {
+        video.play().catch((err) => {
+          console.log('Autoplay playback initialized: ', err);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إشارة يقين | خريطة الرصد التفاعلي وتوزيع الأبراج</title>
+
+  <!-- Meta Description for SEO -->
+  <meta name="description" content="خريطة الرصد التفاعلي والرادار التكتيكي لمنظومة إشارة يقين - رصد انقطاعات الشبكة، الأجهزة الصامتة، وتوزيع أبراج الاتصالات اللحظي عبر الذكاء الاصطناعي.">
+
+  <!-- Google Fonts: Cairo & Tajawal -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            cairo: ['Cairo', 'sans-serif'],
+            tajawal: ['Tajawal', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              cyan: '#00f2fe',
+              neon: '#00e5ff',
+              blue: '#0284c7',
+              dark: '#030b17',
+              accent: '#38bdf8'
+            }
+          },
+          animation: {
+            'spin-slow': 'spin 18s linear infinite',
+            'spin-reverse': 'spinReverse 14s linear infinite',
+            'pulse-fast': 'pulse 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            spinReverse: {
+              from: { transform: 'rotate(360deg)' },
+              to: { transform: 'rotate(0deg)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Tajawal', 'Cairo', sans-serif;
+      background-color: #020617;
+      color: #ffffff;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Tactical Background Grid Pattern */
+    .tactical-grid-bg {
+      background-image: 
+        radial-gradient(circle at 50% 50%, rgba(0, 242, 254, 0.08) 0%, transparent 65%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 48px 48px, 48px 48px;
+    }
+
+    /* Radar Sweep Animation using Conic Gradient */
+    @keyframes sweepRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .radar-sweep-beam {
+      animation: sweepRotate 4.5s linear infinite;
+      transform-origin: center center;
+    }
+
+    /* Radar Ring Pulses */
+    @keyframes radarRingPulse {
+      0% { transform: scale(0.98); opacity: 0.4; }
+      50% { transform: scale(1.02); opacity: 0.85; }
+      100% { transform: scale(0.98); opacity: 0.4; }
+    }
+    .radar-ring-pulse {
+      animation: radarRingPulse 3.5s ease-in-out infinite;
+    }
+
+    /* Glowing Outer Rings */
+    .glow-ring-red {
+      box-shadow: 0 0 25px rgba(239, 68, 68, 0.6), inset 0 0 15px rgba(239, 68, 68, 0.3);
+    }
+    .glow-ring-amber {
+      box-shadow: 0 0 25px rgba(245, 158, 11, 0.6), inset 0 0 15px rgba(245, 158, 11, 0.3);
+    }
+    .glow-ring-cyan {
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.5), inset 0 0 15px rgba(0, 242, 254, 0.25);
+    }
+
+    /* Node Hover Lift */
+    .radar-node {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .radar-node:hover {
+      transform: translate(-50%, -50%) scale(1.12);
+      z-index: 40 !important;
+    }
+    .radar-node.active-node {
+      transform: translate(-50%, -50%) scale(1.15);
+      z-index: 45 !important;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #030b17;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #0284c7;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="h-full w-full flex flex-col bg-slate-950 text-white selection:bg-cyan-500 selection:text-black">
+
+  <!-- ========================================================= -->
+  <!-- 1. TOP FIXED HUD HEADER (شريط الهوية والتحكم العلوي)       -->
+  <!-- ========================================================= -->
+  <header class="w-full bg-slate-950/85 backdrop-blur-xl border-b border-cyan-500/20 sticky top-0 z-40 shadow-2xl flex-shrink-0">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Tactical Title -->
+      <a href="index.html" class="flex items-center gap-3.5 group">
+        <img 
+          src="Minimalist_tech_logo_design_Yaqeen_20260930083231.jpg_2K_20260930083859.jpg" 
+          alt="شعار إشارة يقين" 
+          class="w-10 h-10 rounded-xl object-cover border border-cyan-500/40 shadow-[0_0_12px_rgba(6,182,212,0.4)] group-hover:scale-105 group-hover:border-cyan-400 transition-all">
+        <div class="text-right">
+          <div class="flex items-center gap-2">
+            <span class="text-lg font-black tracking-wide text-white group-hover:text-cyan-300 transition-colors">إشارة يقين</span>
+            <span class="hidden sm:inline-block text-[10px] font-mono font-bold text-cyan-400 bg-cyan-950/80 px-2 py-0.5 rounded-full border border-cyan-500/30">RADAR HUD 360°</span>
+          </div>
+          <span class="block text-[11px] font-semibold text-slate-300">خريطة الرصد التفاعلي وتوزيع الأبراج</span>
+        </div>
+      </a>
+
+
+
+    </div>
+  </header>
+
+  <!-- ========================================================= -->
+  <!-- 2. MAIN RADAR TACTICAL DISPLAY AREA                       -->
+  <!-- ========================================================= -->
+  <main class="relative flex-1 w-full h-full flex flex-col lg:flex-row items-center justify-between p-4 sm:p-6 lg:p-8 tactical-grid-bg overflow-hidden">
+
+    <!-- RADAR CONTAINER (Centerpiece) -->
+    <div class="relative flex-1 w-full h-full min-h-[520px] sm:min-h-[640px] flex items-center justify-center">
+      
+      <!-- Interactive Radar Viewport Box -->
+      <div id="radarViewport" class="relative w-[340px] h-[340px] xs:w-[420px] xs:h-[420px] sm:w-[560px] sm:h-[560px] md:w-[620px] md:h-[620px] lg:w-[680px] lg:h-[680px] rounded-full border border-cyan-500/30 shadow-[0_0_80px_rgba(0,242,254,0.12)] flex items-center justify-center select-none">
+        
+        <!-- Rotating Outer Cyber Calibration Ring -->
+        <div class="absolute inset-[-14px] rounded-full border border-dashed border-cyan-500/20 animate-spin-slow pointer-events-none"></div>
+        <div class="absolute inset-[-28px] rounded-full border border-slate-800/80 pointer-events-none"></div>
+
+        <!-- HTML5 Radar Background Canvas (Range Rings, Coordinates & Device Dots) -->
+        <canvas id="radarCanvas" class="absolute inset-0 w-full h-full rounded-full pointer-events-none z-0"></canvas>
+
+        <!-- Dynamic Rotating Radar Sweep Cone -->
+        <div class="absolute inset-0 rounded-full overflow-hidden pointer-events-none z-10">
+          <div class="radar-sweep-beam w-full h-full rounded-full" 
+               style="background: conic-gradient(from 0deg, rgba(0, 242, 254, 0.35) 0deg, rgba(0, 242, 254, 0.12) 28deg, rgba(0, 242, 254, 0.02) 60deg, transparent 75deg);">
+            <!-- Sweep Leading Line -->
+            <div class="absolute top-0 left-1/2 w-[2px] h-1/2 bg-gradient-to-t from-cyan-400 via-cyan-200 to-white shadow-[0_0_15px_#00f2fe] origin-bottom"></div>
+          </div>
+        </div>
+
+        <!-- Compass Bearing Coordinate Ticks (000°, 045°, 090°, 135°, 180°, 225°, 270°, 315°) -->
+        <div class="absolute top-2 left-1/2 -translate-x-1/2 text-[10px] font-mono text-cyan-400 font-bold bg-slate-950/80 px-1.5 py-0.5 rounded border border-cyan-500/30">000° N</div>
+        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-[10px] font-mono text-cyan-400 font-bold bg-slate-950/80 px-1.5 py-0.5 rounded border border-cyan-500/30">180° S</div>
+        <div class="absolute right-2 top-1/2 -translate-y-1/2 text-[10px] font-mono text-cyan-400 font-bold bg-slate-950/80 px-1.5 py-0.5 rounded border border-cyan-500/30">090° E</div>
+        <div class="absolute left-2 top-1/2 -translate-y-1/2 text-[10px] font-mono text-cyan-400 font-bold bg-slate-950/80 px-1.5 py-0.5 rounded border border-cyan-500/30">270° W</div>
+
+        <!-- Distance Rings Annotation Pills -->
+        <div class="absolute top-[37%] left-1/2 -translate-x-1/2 text-[9px] font-mono text-cyan-500/70 pointer-events-none">5 KM</div>
+        <div class="absolute top-[25%] left-1/2 -translate-x-1/2 text-[9px] font-mono text-cyan-500/70 pointer-events-none">10 KM</div>
+        <div class="absolute top-[13%] left-1/2 -translate-x-1/2 text-[9px] font-mono text-cyan-500/70 pointer-events-none">15 KM</div>
+        <div class="absolute top-[3%] left-1/2 -translate-x-1/2 text-[9px] font-mono text-cyan-500/70 pointer-events-none">20 KM</div>
+
+        <!-- ======================================================= -->
+        <!-- 3. INTERACTIVE REGIONAL NODES (EXACT REFERENCE NODES)   -->
+        <!-- ======================================================= -->
+        
+        <!-- 1. الهدا (Center - Stable Green Cyan) -->
+        <div 
+          id="node-hada" 
+          onclick="selectNode('hada')"
+          style="top: 50%; left: 50%;" 
+          class="radar-node absolute -translate-x-1/2 -translate-y-1/2 z-20 cursor-pointer group flex flex-col items-center">
+          
+          <div class="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-slate-950/90 border-2 border-emerald-400/80 glow-ring-cyan flex items-center justify-center transition-all group-hover:border-cyan-300">
+            <span class="absolute inset-0 rounded-full border border-dashed border-emerald-400/50 animate-spin-reverse pointer-events-none"></span>
+            
+            <div class="flex flex-col items-center">
+              <svg class="w-4 h-4 text-emerald-400 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+              <span class="text-xs sm:text-sm font-black text-white font-mono leading-none">0</span>
+            </div>
+          </div>
+
+          <span class="mt-1.5 px-2.5 py-0.5 rounded-full bg-slate-950/90 border border-emerald-500/40 text-[11px] sm:text-xs font-bold text-emerald-300 whitespace-nowrap shadow-md">
+            الهدا (المركز)
+          </span>
+        </div>
+
+        <!-- 2. شهار (Top-Right - Amber Warning, 1 Report) -->
+        <div 
+          id="node-shahar" 
+          onclick="selectNode('shahar')"
+          style="top: 32%; left: 72%;" 
+          class="radar-node absolute -translate-x-1/2 -translate-y-1/2 z-20 cursor-pointer group flex flex-col items-center">
+          
+          <div class="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-950/90 border-2 border-amber-400 glow-ring-amber flex items-center justify-center transition-all group-hover:scale-105">
+            <span class="absolute -top-1 -right-1 flex h-3 w-3">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-amber-500 shadow-[0_0_8px_#f59e0b]"></span>
+            </span>
+
+            <div class="flex flex-col items-center">
+              <span class="text-xs sm:text-sm font-black text-amber-300 font-mono leading-none">1</span>
+              <span class="text-[9px] font-mono text-amber-400">بلاغ</span>
+            </div>
+          </div>
+
+          <span class="mt-1 px-2 py-0.5 rounded-full bg-slate-950/90 border border-amber-500/40 text-[10px] sm:text-[11px] font-bold text-amber-300 whitespace-nowrap shadow-md">
+            شهار
+          </span>
+        </div>
+
+        <!-- 3. ثقيف (Far Right - Stable Green Cyan) -->
+        <div 
+          id="node-theqeef" 
+          onclick="selectNode('theqeef')"
+          style="top: 52%; left: 88%;" 
+          class="radar-node absolute -translate-x-1/2 -translate-y-1/2 z-20 cursor-pointer group flex flex-col items-center">
+          
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-950/90 border-2 border-cyan-500/70 glow-ring-cyan flex items-center justify-center transition-all group-hover:border-cyan-300">
+            <span class="text-xs font-bold text-cyan-300 font-mono">0</span>
+          </div>
+
+          <span class="mt-1 px-2 py-0.5 rounded-full bg-slate-950/90 border border-cyan-500/40 text-[10px] sm:text-[11px] font-bold text-cyan-300 whitespace-nowrap shadow-md">
+            ثقيف
+          </span>
+        </div>
+
+        <!-- 4. الشفا (Top-Left - Stable Green Cyan) -->
+        <div 
+          id="node-shafa" 
+          onclick="selectNode('shafa')"
+          style="top: 26%; left: 28%;" 
+          class="radar-node absolute -translate-x-1/2 -translate-y-1/2 z-20 cursor-pointer group flex flex-col items-center">
+          
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-slate-950/90 border-2 border-cyan-500/70 glow-ring-cyan flex items-center justify-center transition-all group-hover:border-cyan-300">
+            <span class="text-xs font-bold text-cyan-300 font-mono">0</span>
+          </div>
+
+          <span class="mt-1 px-2 py-0.5 rounded-full bg-slate-950/90 border border-cyan-500/40 text-[10px] sm:text-[11px] font-bold text-cyan-300 whitespace-nowrap shadow-md">
+            الشفا
+          </span>
+        </div>
+
+        <!-- 5. القمرية (Bottom-Right - Stable Green Cyan) -->
+        <div 
+          id="node-qamariyya" 
+          onclick="selectNode('qamariyya')"
+          style="top: 72%; left: 78%;" 
+          class="radar-node absolute -translate-x-1/2 -translate-y-1/2 z-20 cursor-pointer group flex flex-col items-center">
+          
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-950/90 border-2 border-cyan-500/70 glow-ring-cyan flex items-center justify-center transition-all group-hover:border-cyan-300">
+            <span class="text-xs font-bold text-cyan-300 font-mono">0</span>
+          </div>
+
+          <span class="mt-1 px-2 py-0.5 rounded-full bg-slate-950/90 border border-cyan-500/40 text-[10px] sm:text-[11px] font-bold text-cyan-300 whitespace-nowrap shadow-md">
+            القمرية
+          </span>
+        </div>
+
+        <!-- 6. بني سعد (Inner Circle - Red Outage Ring with Dashed Alert Perimeter) -->
+        <div 
+          id="node-banisaad" 
+          onclick="selectNode('banisaad')"
+          style="top: 40%; left: 58%;" 
+          class="radar-node absolute -translate-x-1/2 -translate-y-1/2 z-25 cursor-pointer group flex flex-col items-center">
+          
+          <div class="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-950/90 border-2 border-red-500 glow-ring-red flex items-center justify-center transition-all group-hover:scale-105">
+            <!-- Pulsing Dashed Perimeter Ring -->
+            <span class="absolute inset-[-6px] rounded-full border border-dashed border-red-500/80 animate-spin-slow pointer-events-none"></span>
+
+            <div class="flex flex-col items-center">
+              <svg class="w-3.5 h-3.5 text-red-400 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+              <span class="text-xs sm:text-sm font-black text-red-300 font-mono leading-none">انقطاع</span>
+            </div>
+          </div>
+
+          <span class="mt-2 px-2 py-0.5 rounded-full bg-slate-950/90 border border-red-500/50 text-[10px] sm:text-[11px] font-bold text-red-300 whitespace-nowrap shadow-md">
+            بني سعد
+          </span>
+        </div>
+
+        <!-- 7. خلف الحوية (Bottom-Center - Red 2 Reports with Pulsing Dashed Ring) -->
+        <div 
+          id="node-hawiyyah" 
+          onclick="selectNode('hawiyyah')"
+          style="top: 78%; left: 54%;" 
+          class="radar-node absolute -translate-x-1/2 -translate-y-1/2 z-25 cursor-pointer group flex flex-col items-center">
+          
+          <div class="relative w-13 h-13 sm:w-15 sm:h-15 rounded-full bg-slate-950/90 border-2 border-red-500 glow-ring-red flex items-center justify-center transition-all group-hover:scale-105 p-3">
+            <!-- Pulsing outer danger ring -->
+            <span class="absolute inset-[-7px] rounded-full border border-dashed border-red-500 animate-spin-reverse pointer-events-none"></span>
+            <span class="absolute -top-1 -right-1 flex h-3 w-3">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500 shadow-[0_0_8px_#ef4444]"></span>
+            </span>
+
+            <div class="flex flex-col items-center">
+              <span class="text-sm sm:text-base font-black text-white font-mono leading-none drop-shadow-[0_0_8px_#ef4444]">2</span>
+              <span class="text-[9px] font-mono text-red-400">بلاغات</span>
+            </div>
+          </div>
+
+          <span class="mt-2 px-2.5 py-0.5 rounded-full bg-slate-950/90 border border-red-500/50 text-[10px] sm:text-[11px] font-bold text-red-300 whitespace-nowrap shadow-md">
+            خلف الحوية
+          </span>
+        </div>
+
+        <!-- 8. حي الوسام (Bottom-Left - Large Red Glowing Circle with 4 Reports) -->
+        <div 
+          id="node-wesam" 
+          onclick="selectNode('wesam')"
+          style="top: 70%; left: 32%;" 
+          class="radar-node active-node absolute -translate-x-1/2 -translate-y-1/2 z-30 cursor-pointer group flex flex-col items-center">
+          
+          <div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-slate-950/95 border-2 border-red-500 glow-ring-red flex items-center justify-center transition-all group-hover:scale-110 shadow-[0_0_35px_rgba(239,68,68,0.7)]">
+            <!-- Animated Dashed Danger Perimeter -->
+            <span class="absolute inset-[-8px] rounded-full border-2 border-dashed border-red-400 animate-spin-slow pointer-events-none"></span>
+            <span class="absolute inset-[-14px] rounded-full border border-dashed border-red-500/40 pointer-events-none"></span>
+
+            <span class="absolute -top-1.5 -right-1.5 flex h-4 w-4">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-80"></span>
+              <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-red-500 shadow-[0_0_10px_#ef4444]"></span>
+            </span>
+
+            <div class="flex flex-col items-center">
+              <span class="text-base sm:text-2xl font-black text-white font-mono leading-none drop-shadow-[0_0_12px_#ef4444]">4</span>
+              <span class="text-[10px] font-mono text-red-300 font-bold">بلاغات حرجة</span>
+            </div>
+          </div>
+
+          <span class="mt-2.5 px-3 py-1 rounded-full bg-red-950/90 border border-red-500 text-xs font-black text-red-200 whitespace-nowrap shadow-lg animate-pulse">
+            حي الوسام (بؤرة أزمة)
+          </span>
+        </div>
+
+        <!-- 9. قرية الوهط (Far Bottom-Left - Red Outage Node with Warning Alert) -->
+        <div 
+          id="node-wahat" 
+          onclick="selectNode('wahat')"
+          style="top: 84%; left: 16%;" 
+          class="radar-node absolute -translate-x-1/2 -translate-y-1/2 z-25 cursor-pointer group flex flex-col items-center">
+          
+          <div class="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-950/90 border-2 border-red-500 glow-ring-red flex items-center justify-center transition-all group-hover:scale-105">
+            <span class="absolute inset-[-6px] rounded-full border border-dashed border-red-500/80 animate-spin-reverse pointer-events-none"></span>
+
+            <div class="flex flex-col items-center">
+              <svg class="w-4 h-4 text-red-400 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 4.243a9 9 0 01-2.828-6.364m0 0L3 3m2.828 5.636a5 5 0 011.415-3.536"></path></svg>
+              <span class="text-[9px] font-mono text-red-300 font-bold">عطل برج</span>
+            </div>
+          </div>
+
+          <span class="mt-2 px-2.5 py-0.5 rounded-full bg-slate-950/90 border border-red-500/50 text-[10px] sm:text-[11px] font-bold text-red-300 whitespace-nowrap shadow-md">
+            قرية الوهط
+          </span>
+        </div>
+
+      </div>
+
+      <!-- Tactical Controls Overlay Pill (Bottom Center) -->
+      <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-2 p-1.5 rounded-2xl bg-slate-950/85 backdrop-blur-xl border border-cyan-500/30 text-xs font-semibold shadow-2xl z-30">
+        <button 
+          type="button" 
+          onclick="filterNodes('all')" 
+          id="btnFilterAll" 
+          class="px-3 py-1 rounded-xl bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 transition-all font-bold">
+          كافة المناطق (9)
+        </button>
+        <button 
+          type="button" 
+          onclick="filterNodes('critical')" 
+          id="btnFilterCritical" 
+          class="px-3 py-1 rounded-xl text-slate-400 hover:text-red-300 transition-all font-medium">
+          المناطق المتأثرة (4)
+        </button>
+        <button 
+          type="button" 
+          onclick="filterNodes('stable')" 
+          id="btnFilterStable" 
+          class="px-3 py-1 rounded-xl text-slate-400 hover:text-emerald-300 transition-all font-medium">
+          المستقرة (5)
+        </button>
+      </div>
+
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- 4. SIDE HUD INTELLIGENCE DRAWER (CLICKABLE DETAIL CARD)   -->
+    <!-- ========================================================= -->
+    <aside class="w-full lg:w-96 flex-shrink-0 z-30 mt-6 lg:mt-0">
+      <div class="rounded-3xl bg-slate-900/90 backdrop-blur-2xl border border-cyan-500/35 p-5 sm:p-6 shadow-[0_0_50px_rgba(0,0,0,0.85)] text-white relative overflow-hidden transition-all">
+        
+        <!-- Cyber Corner Accents -->
+        <div class="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-cyan-400 pointer-events-none"></div>
+        <div class="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-cyan-400 pointer-events-none"></div>
+        <div class="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-cyan-400 pointer-events-none"></div>
+        <div class="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-cyan-400 pointer-events-none"></div>
+
+        <!-- Drawer Header -->
+        <div class="flex items-center justify-between pb-3.5 mb-4 border-b border-cyan-500/25">
+          <div class="flex items-center gap-2">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-400 shadow-[0_0_8px_#00f2fe]"></span>
+            </span>
+            <h2 class="text-sm sm:text-base font-bold text-white font-cairo">تحليل استخبارات الرادار والقطاع</h2>
+          </div>
+          <span class="text-[10px] font-mono text-cyan-400 font-bold bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-500/30">
+            LIVE INTEL
+          </span>
+        </div>
+
+        <!-- Selected Node Profile Box -->
+        <div class="p-4 rounded-2xl bg-slate-950/80 border border-red-500/40 shadow-inner mb-4 transition-all" id="intelBox">
+          <div class="flex items-center justify-between mb-2">
+            <span id="intelBadge" class="text-[10px] font-mono font-bold text-red-300 bg-red-950/80 border border-red-500/40 px-2.5 py-0.5 rounded-full">
+              بؤرة أزمة // تدخّل فضائي نشط
+            </span>
+            <span id="intelZoneId" class="text-[11px] font-mono text-cyan-400 font-bold">
+              ZONE-ID: #WS-402
+            </span>
+          </div>
+
+          <h3 id="intelTitle" class="text-lg sm:text-xl font-black text-white font-cairo">
+            حي الوسام / برج تواصل #402
+          </h3>
+          <p id="intelDesc" class="text-xs text-slate-300 mt-1 leading-relaxed">
+            تم رصد تدهور حاد في إشارة البرج الأرضي مع تراكم شكاوى المشتركين. قام محرك الذكاء الاصطناعي برصد الأجهزة الصامتة وتفعيل بث الطوارئ الفضائي.
+          </p>
+        </div>
+
+        <!-- 4 Key Telemetry Metrics Grid -->
+        <div class="grid grid-cols-2 gap-2.5 mb-4">
+          
+          <!-- Metric 1: Active Complaints -->
+          <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800 text-right">
+            <div class="text-[11px] text-slate-400 mb-0.5">عدد البلاغات:</div>
+            <div id="intelComplaints" class="text-xl sm:text-2xl font-mono font-black text-red-400">4 بلاغات</div>
+            <div class="text-[10px] text-rose-400 mt-1">تزايد خلال آخر 15 دقيقة</div>
+          </div>
+
+          <!-- Metric 2: Silent Devices -->
+          <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800 text-right">
+            <div class="text-[11px] text-slate-400 mb-0.5">الأجهزة الصامتة:</div>
+            <div id="intelSilent" class="text-xl sm:text-2xl font-mono font-black text-amber-400">45 جهاز</div>
+            <div class="text-[10px] text-slate-400 mt-1">رصد عبر خوارزمية الصمت</div>
+          </div>
+
+          <!-- Metric 3: Tower Load & Distance -->
+          <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800 text-right">
+            <div class="text-[11px] text-slate-400 mb-0.5">الضغط والمسافة:</div>
+            <div id="intelLoadDistance" class="text-sm sm:text-base font-mono font-bold text-cyan-300">الضغط: 92% | 10 كم</div>
+            <!-- Progress Mini Bar -->
+            <div class="w-full bg-slate-900 rounded-full h-1.5 mt-2 overflow-hidden">
+              <div id="intelLoadBar" class="bg-red-500 h-1.5 rounded-full shadow-[0_0_8px_#ef4444]" style="width: 92%;"></div>
+            </div>
+          </div>
+
+          <!-- Metric 4: Latency & Stability -->
+          <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800 text-right">
+            <div class="text-[11px] text-slate-400 mb-0.5">زمن الاستجابة (QoS):</div>
+            <div id="intelLatency" class="text-xl font-mono font-black text-slate-200">14.2 ms</div>
+            <div id="intelStatusShort" class="text-[10px] text-emerald-400 mt-1">اتصال فضائي مستقر</div>
+          </div>
+
+        </div>
+
+        <!-- Quick Action Button -->
+        <div class="mt-4">
+          <a 
+            href="customer.html" 
+            class="w-full bg-slate-950/80 hover:bg-slate-800 border border-slate-700 hover:border-cyan-400 text-slate-300 hover:text-white font-medium text-xs py-2.5 px-3 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-sm">
+            <svg class="w-3.5 h-3.5 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            <span>تقديم بلاغ جديد لهذه المنطقة</span>
+          </a>
+        </div>
+
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- ========================================================= -->
+  <!-- 5. BOTTOM CORNER RETURN ACTION (العودة إلى الرئيسية)       -->
+  <!-- ========================================================= -->
+  <div class="fixed bottom-5 left-5 z-40">
+    <a 
+      href="index.html" 
+      class="group flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-slate-900/90 hover:bg-slate-800/95 border border-cyan-500/40 hover:border-cyan-300 text-cyan-300 hover:text-white font-bold text-xs sm:text-sm shadow-[0_0_30px_rgba(0,242,254,0.35)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 active:scale-95">
+      <svg class="w-4 h-4 text-cyan-400 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+      <span>العودة إلى الرئيسية</span>
+    </a>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- 6. INTERACTIVE RADAR & TELEMETRY CONTROLLER SCRIPT        -->
+  <!-- ========================================================= -->
+  <script>
+    // Detailed Intelligence Profiles for all 9 Regional Nodes
+    const NODES_DATA = {
+      wesam: {
+        id: 'wesam',
+        name: 'حي الوسام / برج تواصل #402',
+        badge: 'بؤرة أزمة // تدخّل فضائي نشط',
+        badgeClass: 'text-red-300 bg-red-950/80 border-red-500/40',
+        boxBorderClass: 'border-red-500/50',
+        zoneId: 'ZONE-ID: #WS-402',
+        desc: 'تم رصد تدهور حاد في إشارة البرج الأرضي مع تراكم شكاوى المشتركين. قام محرك الذكاء الاصطناعي برصد الأجهزة الصامتة وتفعيل بث الطوارئ الفضائي فورياً.',
+        complaints: '4 بلاغات',
+        complaintsColor: 'text-red-400',
+        silentDevices: '45 جهاز',
+        loadDistance: 'الضغط: 92% | المسافة: 10 كم',
+        loadBarWidth: '92%',
+        loadBarColor: 'bg-red-500',
+        latency: '14.2 ms',
+        statusShort: 'اتصال فضائي مستقر',
+        aiStatus: 'تم تفعيل التغطية المؤقتة عبر الأقمار الصناعية لإنقاذ اتصالات 45 جهازاً صامتاً.'
+      },
+      hawiyyah: {
+        id: 'hawiyyah',
+        name: 'خلف الحوية / برج شبكة #310',
+        badge: 'عطل نشط // بلاغات واردة',
+        badgeClass: 'text-red-300 bg-red-950/80 border-red-500/40',
+        boxBorderClass: 'border-red-500/50',
+        zoneId: 'ZONE-ID: #HW-310',
+        desc: 'تسجيل بلاغين متزامنين عن انقطاع تدفق البيانات مع تراجع تغطية الحزمة الراديوية. الوكيل الذكي يقترح إعادة توجيه الحمل إلى القطاع المساعد.',
+        complaints: '2 بلاغات',
+        complaintsColor: 'text-red-400',
+        silentDevices: '28 جهاز',
+        loadDistance: 'الضغط: 89% | المسافة: 12 كم',
+        loadBarWidth: '89%',
+        loadBarColor: 'bg-red-500',
+        latency: '19.4 ms',
+        statusShort: 'إعادة موازنة الحمل',
+        aiStatus: 'تم تعزيز طاقة بث الهوائيات المجاورة لامتصاص الفاقد الراديوي.'
+      },
+      banisaad: {
+        id: 'banisaad',
+        name: 'بني سعد / برج النطاق الريفي #190',
+        badge: 'انقطاع كامل // إشارة مقطوعة',
+        badgeClass: 'text-red-300 bg-red-950/80 border-red-500/40',
+        boxBorderClass: 'border-red-500/50',
+        zoneId: 'ZONE-ID: #BS-190',
+        desc: 'انقطاع تام في التردد الأساسي ناتج عن خلل بمغذي الطاقة للبرج. تم جدولة الاستجابة الذاتية وتنبيه الموظف الميداني لتبديل المولد الاحتياطي.',
+        complaints: '3 بلاغات',
+        complaintsColor: 'text-red-400',
+        silentDevices: '38 جهاز',
+        loadDistance: 'الضغط: 98% | المسافة: 18 كم',
+        loadBarWidth: '98%',
+        loadBarColor: 'bg-red-600',
+        latency: 'غير متاح (فقد)',
+        statusShort: 'عطل كهربائي طارئ',
+        aiStatus: 'تم تفعيل التغطية المؤقتة عبر الأقمار الصناعية وتوجيه فرق الصيانة عاجلاً.'
+      },
+      wahat: {
+        id: 'wahat',
+        name: 'قرية الوهط / برج تواصل #405',
+        badge: 'عطل برج حرج // إنذار مبكر',
+        badgeClass: 'text-red-300 bg-red-950/80 border-red-500/40',
+        boxBorderClass: 'border-red-500/50',
+        zoneId: 'ZONE-ID: #WH-405',
+        desc: 'رصد تدهور ملحوظ بمؤشر RSRP إلى ما دون -118 dBm. تم التدخل الاستباقي قبل تفاقم الانقطاع الشامل لدى المستخدمين.',
+        complaints: '1 بلاغ',
+        complaintsColor: 'text-red-400',
+        silentDevices: '34 جهاز',
+        loadDistance: 'الضغط: 88% | المسافة: 14 كم',
+        loadBarWidth: '88%',
+        loadBarColor: 'bg-red-500',
+        latency: '16.5 ms',
+        statusShort: 'تثبيت هوائي نشط',
+        aiStatus: 'تم تثبيت بث التغطية الفضائية المؤقتة لضمان استمرار الاتصالات الحيوية.'
+      },
+      shahar: {
+        id: 'shahar',
+        name: 'شهار / برج شبكة #215',
+        badge: 'حمل مرتفع // مراقبة مستمرة',
+        badgeClass: 'text-amber-300 bg-amber-950/80 border-amber-500/40',
+        boxBorderClass: 'border-amber-500/50',
+        zoneId: 'ZONE-ID: #SH-215',
+        desc: 'ضغط متزايد على سعة القنوات الراديوية مع ارتفاع طفيف في زمن الاستجابة. تم تسجيل بلاغ فردي ويجري فحص جودة الخدمة آلياً.',
+        complaints: '1 بلاغ',
+        complaintsColor: 'text-amber-400',
+        silentDevices: '12 جهاز',
+        loadDistance: 'الضغط: 81% | المسافة: 8 كم',
+        loadBarWidth: '81%',
+        loadBarColor: 'bg-amber-500',
+        latency: '22.8 ms',
+        statusShort: 'ضغط شبكة متوسط',
+        aiStatus: 'يقوم وكيل التحقق بمراقبة التذبذب الراديوي وضبط زوايا التردد الذاتي.'
+      },
+      hada: {
+        id: 'hada',
+        name: 'الهدا / برج المرتفعات #108',
+        badge: 'مستقر // كفاءة مثالية 99.8%',
+        badgeClass: 'text-emerald-300 bg-emerald-950/80 border-emerald-500/40',
+        boxBorderClass: 'border-emerald-500/50',
+        zoneId: 'ZONE-ID: #HD-108',
+        desc: 'البرج المحوري يعمل بأعلى درجات الكفاءة والاستقرار الراديوي. نقاء الإشارة وسرعة الاستجابة تعمل بالمستويات القياسية لشبكات الجيل الخامس المستقلة.',
+        complaints: '0 بلاغات',
+        complaintsColor: 'text-emerald-400',
+        silentDevices: '0 جهاز',
+        loadDistance: 'الضغط: 42% | المسافة: 5 كم',
+        loadBarWidth: '42%',
+        loadBarColor: 'bg-emerald-500',
+        latency: '8.4 ms',
+        statusShort: 'استقرار فائق 99.8%',
+        aiStatus: 'كافة المؤشرات في النطاق الأخضر الآمن دون أي تدهور مرصود.'
+      },
+      shafa: {
+        id: 'shafa',
+        name: 'الشفا / برج المرتفعات الغربية #112',
+        badge: 'مستقر // كفاءة مثالية',
+        badgeClass: 'text-cyan-300 bg-cyan-950/80 border-cyan-500/40',
+        boxBorderClass: 'border-cyan-500/40',
+        zoneId: 'ZONE-ID: #SF-112',
+        desc: 'استقرار ممتاز في التغطية وسرعة نقل البيانات دون أي شكاوى أو أجهزة صامتة.',
+        complaints: '0 بلاغات',
+        complaintsColor: 'text-cyan-400',
+        silentDevices: '0 جهاز',
+        loadDistance: 'الضغط: 38% | المسافة: 16 كم',
+        loadBarWidth: '38%',
+        loadBarColor: 'bg-cyan-500',
+        latency: '9.2 ms',
+        statusShort: 'استقرار كامل',
+        aiStatus: 'الرصد الاستباقي يؤكد عدم وجود أي مخاطر انقطاع خلال الساعات القادمة.'
+      },
+      theqeef: {
+        id: 'theqeef',
+        name: 'ثقيف / برج المحور الجنوبي #144',
+        badge: 'مستقر // كفاءة تشغيلية',
+        badgeClass: 'text-cyan-300 bg-cyan-950/80 border-cyan-500/40',
+        boxBorderClass: 'border-cyan-500/40',
+        zoneId: 'ZONE-ID: #TQ-144',
+        desc: 'تغطية مستقرة ومتصلة بالعمود الفقري للألياف الضوئية بكفاءة عالية.',
+        complaints: '0 بلاغات',
+        complaintsColor: 'text-cyan-400',
+        silentDevices: '0 جهاز',
+        loadDistance: 'الضغط: 45% | المسافة: 20 كم',
+        loadBarWidth: '45%',
+        loadBarColor: 'bg-cyan-500',
+        latency: '10.5 ms',
+        statusShort: 'شبكة منتظمة',
+        aiStatus: 'مستويات القدرة الراديوية تعمل بالوضع التشغيلي الأمثل.'
+      },
+      qamariyya: {
+        id: 'qamariyya',
+        name: 'القمرية / برج القطاع الشرقي #168',
+        badge: 'مستقر // كفاءة ممتازة',
+        badgeClass: 'text-cyan-300 bg-cyan-950/80 border-cyan-500/40',
+        boxBorderClass: 'border-cyan-500/40',
+        zoneId: 'ZONE-ID: #QM-168',
+        desc: 'أداء منتظم ولا توجد أي مؤشرات تدهور أو شكاوى من سكان الحي.',
+        complaints: '0 بلاغات',
+        complaintsColor: 'text-cyan-400',
+        silentDevices: '0 جهاز',
+        loadDistance: 'الضغط: 49% | المسافة: 11 كم',
+        loadBarWidth: '49%',
+        loadBarColor: 'bg-cyan-500',
+        latency: '11.1 ms',
+        statusShort: 'استقرار تام',
+        aiStatus: 'لا توجد أي انقطاعات أو شكاوى واردة.'
+      }
+    };
+
+    // Node Selection Handler
+    let activeNodeId = 'wesam';
+
+    function selectNode(nodeId) {
+      const data = NODES_DATA[nodeId];
+      if (!data) return;
+
+      activeNodeId = nodeId;
+
+      // Update Node element classes
+      document.querySelectorAll('.radar-node').forEach(node => {
+        node.classList.remove('active-node');
+      });
+      const activeEl = document.getElementById(`node-${nodeId}`);
+      if (activeEl) {
+        activeEl.classList.add('active-node');
+      }
+
+      // Update Intel Drawer content smoothly
+      const intelBadge = document.getElementById('intelBadge');
+      intelBadge.textContent = data.badge;
+      intelBadge.className = `text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full border ${data.badgeClass}`;
+
+      document.getElementById('intelZoneId').textContent = data.zoneId;
+      document.getElementById('intelTitle').textContent = data.name;
+      document.getElementById('intelDesc').textContent = data.desc;
+
+      const intelComplaints = document.getElementById('intelComplaints');
+      intelComplaints.textContent = data.complaints;
+      intelComplaints.className = `text-xl sm:text-2xl font-mono font-black ${data.complaintsColor}`;
+
+      document.getElementById('intelSilent').textContent = data.silentDevices;
+      document.getElementById('intelLoadDistance').textContent = data.loadDistance;
+
+      const intelLoadBar = document.getElementById('intelLoadBar');
+      intelLoadBar.style.width = data.loadBarWidth;
+      intelLoadBar.className = `h-1.5 rounded-full ${data.loadBarColor}`;
+
+      document.getElementById('intelLatency').textContent = data.latency;
+      document.getElementById('intelStatusShort').textContent = data.statusShort;
+
+      const intelBox = document.getElementById('intelBox');
+      intelBox.className = `p-4 rounded-2xl bg-slate-950/80 border ${data.boxBorderClass} shadow-inner mb-4 transition-all`;
+    }
+
+    // Filter Nodes Logic
+    function filterNodes(type) {
+      const allNodes = ['wesam', 'hawiyyah', 'banisaad', 'wahat', 'shahar', 'hada', 'shafa', 'theqeef', 'qamariyya'];
+      const criticalNodes = ['wesam', 'hawiyyah', 'banisaad', 'wahat'];
+      const stableNodes = ['hada', 'shafa', 'theqeef', 'qamariyya', 'shahar'];
+
+      const btnAll = document.getElementById('btnFilterAll');
+      const btnCrit = document.getElementById('btnFilterCritical');
+      const btnStab = document.getElementById('btnFilterStable');
+
+      btnAll.className = 'px-3 py-1 rounded-xl text-slate-400 hover:text-cyan-300 transition-all font-medium';
+      btnCrit.className = 'px-3 py-1 rounded-xl text-slate-400 hover:text-red-300 transition-all font-medium';
+      btnStab.className = 'px-3 py-1 rounded-xl text-slate-400 hover:text-emerald-300 transition-all font-medium';
+
+      if (type === 'critical') {
+        btnCrit.className = 'px-3 py-1 rounded-xl bg-red-500/20 text-red-300 border border-red-500/40 transition-all font-bold';
+        allNodes.forEach(id => {
+          const el = document.getElementById(`node-${id}`);
+          if (el) {
+            el.style.opacity = criticalNodes.includes(id) ? '1' : '0.2';
+            el.style.pointerEvents = criticalNodes.includes(id) ? 'auto' : 'none';
+          }
+        });
+        selectNode('wesam');
+      } else if (type === 'stable') {
+        btnStab.className = 'px-3 py-1 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 transition-all font-bold';
+        allNodes.forEach(id => {
+          const el = document.getElementById(`node-${id}`);
+          if (el) {
+            el.style.opacity = stableNodes.includes(id) ? '1' : '0.2';
+            el.style.pointerEvents = stableNodes.includes(id) ? 'auto' : 'none';
+          }
+        });
+        selectNode('hada');
+      } else {
+        btnAll.className = 'px-3 py-1 rounded-xl bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 transition-all font-bold';
+        allNodes.forEach(id => {
+          const el = document.getElementById(`node-${id}`);
+          if (el) {
+            el.style.opacity = '1';
+            el.style.pointerEvents = 'auto';
+          }
+        });
+        selectNode('wesam');
+      }
+    }
+
+    // =========================================================
+    // 7. CANVAS RADAR GRAPHICS ENGINE (Rings, Mesh & Micro-Dots)
+    // =========================================================
+    const canvas = document.getElementById('radarCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Scatter micro-dots representing IoT/mobile devices
+    let deviceDots = [];
+    const NUM_DEVICES = 64;
+
+    function initDeviceDots(radius, centerX, centerY) {
+      deviceDots = [];
+      for (let i = 0; i < NUM_DEVICES; i++) {
+        // Random angle and distance within radar radius
+        const angle = Math.random() * Math.PI * 2;
+        const dist = Math.random() * (radius * 0.92);
+        const x = centerX + Math.cos(angle) * dist;
+        const y = centerY + Math.sin(angle) * dist;
+        
+        // Cluster red silent devices in the bottom-left quadrant (near Wesam & Wahat)
+        const isNearOutage = (Math.cos(angle) < 0 && Math.sin(angle) > 0.1 && Math.random() < 0.65);
+        const isSilent = isNearOutage || (Math.random() < 0.12);
+
+        deviceDots.push({
+          x,
+          y,
+          isSilent,
+          alpha: Math.random() * 0.5 + 0.3,
+          pulseSpeed: Math.random() * 0.02 + 0.01,
+          size: isSilent ? 2.5 : 1.8
+        });
+      }
+    }
+
+    function resizeCanvas() {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * window.devicePixelRatio;
+      canvas.height = rect.height * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      initDeviceDots(rect.width / 2, rect.width / 2, rect.height / 2);
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    setTimeout(resizeCanvas, 50);
+
+    function drawRadarGrid() {
+      const w = canvas.getBoundingClientRect().width;
+      const h = canvas.getBoundingClientRect().height;
+      const cx = w / 2;
+      const cy = h / 2;
+      const maxR = w / 2;
+
+      ctx.clearRect(0, 0, w, h);
+
+      // 1. Draw Concentric Range Rings (4 Rings)
+      const ringSteps = [0.25, 0.50, 0.75, 1.0];
+      ringSteps.forEach((step, idx) => {
+        ctx.beginPath();
+        ctx.arc(cx, cy, maxR * step, 0, Math.PI * 2);
+        ctx.strokeStyle = idx === ringSteps.length - 1 ? 'rgba(0, 242, 254, 0.35)' : 'rgba(0, 242, 254, 0.14)';
+        ctx.lineWidth = idx === ringSteps.length - 1 ? 1.5 : 1;
+        ctx.stroke();
+      });
+
+      // 2. Draw Crosshairs & Radials
+      ctx.beginPath();
+      // Horizontal
+      ctx.moveTo(0, cy);
+      ctx.lineTo(w, cy);
+      // Vertical
+      ctx.moveTo(cx, 0);
+      ctx.lineTo(cx, h);
+      // Diagonals (45 deg)
+      ctx.moveTo(cx - maxR * 0.707, cy - maxR * 0.707);
+      ctx.lineTo(cx + maxR * 0.707, cy + maxR * 0.707);
+      ctx.moveTo(cx - maxR * 0.707, cy + maxR * 0.707);
+      ctx.lineTo(cx + maxR * 0.707, cy - maxR * 0.707);
+
+      ctx.strokeStyle = 'rgba(0, 242, 254, 0.08)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // 3. Draw Micro-dots (IoT / Connected and Silent Devices)
+      deviceDots.forEach(dot => {
+        dot.alpha += dot.pulseSpeed;
+        if (dot.alpha > 0.8 || dot.alpha < 0.2) {
+          dot.pulseSpeed = -dot.pulseSpeed;
+        }
+
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, dot.size, 0, Math.PI * 2);
+        if (dot.isSilent) {
+          ctx.fillStyle = `rgba(239, 68, 68, ${dot.alpha})`;
+          ctx.shadowColor = '#ef4444';
+          ctx.shadowBlur = 6;
+        } else {
+          ctx.fillStyle = `rgba(0, 242, 254, ${dot.alpha * 0.7})`;
+          ctx.shadowColor = '#00f2fe';
+          ctx.shadowBlur = 4;
+        }
+        ctx.fill();
+        ctx.shadowBlur = 0; // reset
+      });
+
+      requestAnimationFrame(drawRadarGrid);
+    }
+
+    // Start background canvas animation
+    requestAnimationFrame(drawRadarGrid);
+
+    // Initial Selection
+    document.addEventListener('DOMContentLoaded', () => {
+      selectNode('wesam');
+    });
+  </script>
+</body>
+</html>
